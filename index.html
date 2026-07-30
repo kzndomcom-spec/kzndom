@@ -469,7 +469,7 @@
       <div class="step-q">Куда отправить расчёт и планировки?</div>
       <div class="opts two" data-key="channel" style="margin-bottom:20px;">
         <button type="button" class="opt" data-val="Телефон"><span class="dot"></span> На мой телефон</button>
-        <button type="button" class="opt" data-val="WhatsApp"><span class="dot"></span> На мой мессенджер (WhatsApp)</button>
+        <button type="button" class="opt" data-val="Мессенджер"><span class="dot"></span> На мой мессенджер</button>
       </div>
       <form id="calc-form" data-lead="Экспресс-расчёт стоимости">
         <div class="field">
@@ -593,7 +593,7 @@
   <div class="m-card">
     <div class="m-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
     <h3>Заявка отправлена!</h3>
-    <p>Наш менеджер свяжется с вами в ближайшее время. Если открылся WhatsApp — отправьте, пожалуйста, сообщение.</p>
+    <p>Наш менеджер свяжется с вами в ближайшее время. Если открылся мессенджер — отправьте, пожалуйста, сообщение.</p>
     <button type="button" class="btn btn-acc btn-block" onclick="document.getElementById('kzn-modal').classList.remove('on')">Хорошо</button>
   </div>
 </div>
@@ -602,7 +602,7 @@
 (function(){
   /* =====================================================
      CONFIG — куда уходят заявки.
-     По умолчанию: открывается WhatsApp на номер компании
+     По умолчанию: открывается мессенджер (WhatsApp) на номер компании
      с заполненным сообщением (работает без бэкенда).
      Для CRM/бота — впиши webhook ИЛИ telegram.
      ===================================================== */
