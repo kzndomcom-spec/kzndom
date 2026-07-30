@@ -608,7 +608,7 @@
      ===================================================== */
   var CONFIG = {
     whatsapp: '79662505650',
-    webhook: '',
+    webhook: 'https://kzndom-lead.kzndomcom.workers.dev',
     telegram: { token:'', chatId:'' },
     metrikaId: 9750851,
     metrikaGoal: 'lead'
@@ -753,15 +753,25 @@
   /* ---------- LEAD DELIVERY ---------- */
   function reachGoal(){ try{ if(CONFIG.metrikaId && window.ym){ window.ym(CONFIG.metrikaId,'reachGoal',CONFIG.metrikaGoal); } }catch(e){} }
   function deliver(p){
-    if(CONFIG.webhook){ try{ fetch(CONFIG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}); }catch(e){} }
+    var sent=false;
+    if(CONFIG.webhook){
+      sent=true;
+      try{
+        fetch(CONFIG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)})
+          .then(function(r){ if(!r||!r.ok){ waFallback(p); } })
+          .catch(function(){ waFallback(p); });
+      }catch(e){ waFallback(p); }
+    }
     if(CONFIG.telegram && CONFIG.telegram.token && CONFIG.telegram.chatId){
+      sent=true;
       var text='🏠 Новая заявка ДОМКОМ%0A'+encodeURIComponent(p.source)+'%0AТел: '+encodeURIComponent(p.phone)+(p.details?'%0A'+encodeURIComponent(p.details):'');
       try{ fetch('https://api.telegram.org/bot'+CONFIG.telegram.token+'/sendMessage?chat_id='+CONFIG.telegram.chatId+'&text='+text); }catch(e){}
     }
-    if(!CONFIG.webhook && !(CONFIG.telegram && CONFIG.telegram.token)){
-      var msg='Здравствуйте! Заявка с сайта.%0A'+encodeURIComponent(p.source)+'%0AМой контакт: '+encodeURIComponent(p.phone)+(p.details?'%0A'+encodeURIComponent(p.details):'');
-      window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+msg,'_blank');
-    }
+    if(!sent){ waFallback(p); }
+  }
+  function waFallback(p){
+    var msg='Здравствуйте! Заявка с сайта.%0A'+encodeURIComponent(p.source)+'%0AМой контакт: '+encodeURIComponent(p.phone)+(p.details?'%0A'+encodeURIComponent(p.details):'');
+    window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+msg,'_blank');
   }
   function handleForm(form, details){
     var phone=(form.querySelector('input[name=phone]')||{}).value||'';
