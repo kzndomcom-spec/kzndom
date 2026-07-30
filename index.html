@@ -128,6 +128,7 @@
   border:1px solid var(--line2); color:var(--t1); font-size:.96rem; outline:none; transition:.2s; }
 .kzn .field input::placeholder{ color:var(--t3); }
 .kzn .field input:focus{ border-color:var(--acc); box-shadow:0 0 0 3px var(--glow); }
+.kzn .field input.err{ border-color:#e5534b; box-shadow:0 0 0 3px rgba(229,83,75,.20); }
 .kzn .field .btn{ flex:0 0 auto; }
 .kzn .form-priv{ color:var(--t3); font-size:.72rem; margin-top:11px; }
 .kzn .form-priv a{ color:var(--t2); text-decoration:underline; }
@@ -481,7 +482,7 @@
 
     <div class="step calc-result" data-step="6">
       <div class="est-lbl">Предварительная стоимость дома под ключ</div>
-      <div class="est grad-text" id="est-val">от 4 200 000 ₽</div>
+      <div class="est grad-text" id="est-val">от 3 360 000 ₽</div>
       <div class="est-note">Точную смету рассчитает менеджер по вашим параметрам и участку</div>
       <div class="calc-summary" id="summary"></div>
       <div class="m-ic" style="margin:0 auto 16px;width:54px;height:54px;border-radius:50%;background:var(--glow);color:var(--ok);display:grid;place-items:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
@@ -686,7 +687,7 @@
   }
 
   /* ---------- CALCULATOR ---------- */
-  var BASE=38000; // ₽/м² базовая стоимость под ключ
+  var BASE=30400; // ₽/м² базовая стоимость под ключ (снижено на 20%)
   var state={}, step=1, TOTAL=5;
   var steps=root.querySelectorAll('.step');
   var prog=document.getElementById('prog');
@@ -773,10 +774,32 @@
     var msg='Здравствуйте! Заявка с сайта.%0A'+encodeURIComponent(p.source)+'%0AМой контакт: '+encodeURIComponent(p.phone)+(p.details?'%0A'+encodeURIComponent(p.details):'');
     window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+msg,'_blank');
   }
+  function pdigits(v){ var raw=String(v||'').replace(/\D/g,''); if(raw[0]==='8'||raw[0]==='7') raw=raw.slice(1); return raw.slice(0,10); }
+  function validPhone(v){ return pdigits(v).length===10; }
+  function maskPhone(inp){
+    inp.setAttribute('inputmode','tel');
+    inp.addEventListener('input', function(){
+      inp.setCustomValidity(''); inp.classList.remove('err');
+      if(!inp.value.replace(/\D/g,'').length){ inp.value=''; return; }
+      var raw=pdigits(inp.value);
+      var out='+7 ('+raw.slice(0,3);
+      if(raw.length>3) out+=') '+raw.slice(3,6);
+      if(raw.length>6) out+='-'+raw.slice(6,8);
+      if(raw.length>8) out+='-'+raw.slice(8,10);
+      inp.value=out;
+    });
+    inp.addEventListener('blur', function(){ if(inp.value && !validPhone(inp.value)) inp.classList.add('err'); });
+  }
+  root.querySelectorAll('input[name=phone]').forEach(maskPhone);
   function handleForm(form, details){
-    var phone=(form.querySelector('input[name=phone]')||{}).value||'';
-    if(!phone.trim()){ form.querySelector('input').focus(); return false; }
-    reachGoal(); deliver({source:form.dataset.lead||'Заявка', phone:phone, details:details||''}); return true;
+    var inp=form.querySelector('input[name=phone]');
+    var v=(inp||{}).value||'';
+    if(!validPhone(v)){
+      if(inp){ inp.classList.add('err'); inp.setCustomValidity('Введите корректный номер телефона в формате +7 (999) 999-99-99'); inp.reportValidity(); inp.focus(); }
+      return false;
+    }
+    inp.setCustomValidity(''); inp.classList.remove('err');
+    reachGoal(); deliver({source:form.dataset.lead||'Заявка', phone:v, details:details||''}); return true;
   }
   root.querySelectorAll('form[data-lead]').forEach(function(form){
     if(form.id==='calc-form') return;
