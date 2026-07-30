@@ -528,7 +528,7 @@
 <section class="sec" id="about" style="background:var(--bg2);">
   <div class="wrap">
     <div class="eyebrow">Коротко о DOM.COM</div>
-    <h2 class="h-title">Собрали для вас <span class="acc">кратко о нас</span></h2>
+    <h2 class="h-title">Кратко <span class="acc">о нас</span></h2>
     <p class="h-sub" style="margin-bottom:40px;">Главное о компании в трёх цифрах.</p>
     <div class="stats">
       <div class="stat">
@@ -842,7 +842,7 @@
   /* ---------- плавное появление блоков при скролле ---------- */
   (function(){
     if(!('IntersectionObserver' in window)) return;
-    var sel='.hero-head > *, #calc .center > *, .calc, #reviews .center > *, .rev-carousel, #about .wrap > *, .band, .ftr-in > div';
+    var sel='#calc .center > *, .calc, #reviews .center > *, .rev-carousel, #about .wrap > *, .band, .ftr-in > div';
     var targets=[].slice.call(root.querySelectorAll(sel));
     targets.forEach(function(el){ el.classList.add('reveal'); });
     targets.forEach(function(el){
