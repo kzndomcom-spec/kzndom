@@ -87,7 +87,7 @@
 .kzn .btn-line{ background:var(--card2); color:#fff; border:1px solid var(--line); }
 .kzn .btn-line:hover{ background:#26262b; transform:translateY(-2px); }
 .kzn .btn-big{ padding:19px 40px; font-size:1.02rem; }
-.kzn .btn-block{ width:100%; }
+.kzn .btn-block{ width:100%; white-space:normal; }
 
 /* ===================== HEADER ===================== */
 .kzn .hdr{ position:absolute; top:0; left:0; right:0; z-index:20; padding:28px 0 0; background:transparent; }
@@ -135,7 +135,7 @@
 
 /* ===================== CATALOG BAND ===================== */
 .kzn .band{ background:linear-gradient(135deg,var(--card),var(--bg2)); border:1px solid var(--line);
-  border-radius:16px; padding:46px; display:grid; grid-template-columns:1.1fr .9fr; gap:50px; align-items:center;
+  border-radius:16px; padding:46px; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:50px; align-items:center;
   position:relative; overflow:hidden; }
 .kzn .band::before{ content:""; position:absolute; right:-80px; top:-80px; width:320px; height:320px; border-radius:50%;
   background:radial-gradient(circle,var(--glow),transparent 70%); }
@@ -276,6 +276,8 @@
   .kzn .sec{ padding:62px 0; }
   .kzn .wrap{ padding:0 18px; }
   .kzn .stats,.kzn .opts,.kzn .opts.two{ grid-template-columns:1fr; }
+  .kzn .band{ grid-template-columns:minmax(0,1fr)!important; gap:22px; }
+  .kzn .cat-book{ max-width:220px; }
   .kzn .hero-stats{ grid-template-columns:repeat(2,1fr); }
   .kzn .hstat{ padding:20px 14px; }
   .kzn .calc{ padding:26px 20px; }
