@@ -340,6 +340,11 @@
 
 .kzn .qh-col{ fill:#26232c; }
 .kzn .qh-led{ fill:#d9c9ff; filter:drop-shadow(0 0 4px rgba(190,170,255,.85)); }
+
+/* плавное появление блоков при скролле */
+.kzn .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); will-change:opacity,transform; }
+.kzn .reveal.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .kzn .reveal{ opacity:1!important; transform:none!important; transition:none!important; } }
 </style>
 
 <!-- ===================== HEADER ===================== -->
@@ -832,6 +837,22 @@
       if(id.length>1){ var el=root.querySelector(id); if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); } }
     });
   });
+
+  /* ---------- плавное появление блоков при скролле ---------- */
+  (function(){
+    if(!('IntersectionObserver' in window)) return;
+    var sel='.hero-head > *, #calc .center > *, .calc, #reviews .center > *, .rev-carousel, #about .wrap > *, .band, .ftr-in > div';
+    var targets=[].slice.call(root.querySelectorAll(sel));
+    targets.forEach(function(el){ el.classList.add('reveal'); });
+    targets.forEach(function(el){
+      var sibs=[].filter.call(el.parentNode.children,function(c){ return c.classList && c.classList.contains('reveal'); });
+      var idx=sibs.indexOf(el); if(idx>0) el.style.transitionDelay=Math.min(idx*80,320)+'ms';
+    });
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{ threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    targets.forEach(function(el){ io.observe(el); });
+  })();
 })();
 </script>
 </div>
