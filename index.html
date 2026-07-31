@@ -260,7 +260,7 @@
 .kzn-modal p{ color:var(--t2); margin-bottom:24px; font-size:.95rem; }
 
 /* встроенный Vimeo-плеер прямо в карточке отзыва */
-.kzn .rev-media iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; display:block; z-index:3; }
+.kzn .rev-media iframe,.kzn .rev-media video{ position:absolute; inset:0; width:100%; height:100%; border:0; display:block; z-index:3; background:#000; object-fit:cover; }
 .kzn .rev-media[data-playing]{ cursor:default; }
 .kzn .rev-media[data-playing]::after,
 .kzn .rev-media[data-playing] .rev-play{ display:none; }
@@ -628,17 +628,17 @@
 
   /* ---------- REVIEWS (карусель реальных видео-отзывов) ---------- */
   var REVIEWS = [
-    {img:'/img/review1.jpg', n:'Наталья',   c:'Чистополь',    vid:'1030014936'},
-    {img:'/img/review2.jpg', n:'Ренат',     c:'Казань',       vid:'1030014900'},
-    {img:'/img/review3.jpg', n:'Раиль',     c:'Казань',       vid:'1030014810'},
-    {img:'/img/review4.jpg', n:'Екатерина', c:'Алексеевское', vid:'1030014738'}
+    {img:'/img/review1.jpg', mp4:'/video/review1.mp4', n:'Наталья',   c:'Чистополь',    vid:'1030014936'},
+    {img:'/img/review2.jpg', mp4:'/video/review2.mp4', n:'Ренат',     c:'Казань',       vid:'1030014900'},
+    {img:'/img/review3.jpg', mp4:'/video/review3.mp4', n:'Раиль',     c:'Казань',       vid:'1030014810'},
+    {img:'/img/review4.jpg', mp4:'/video/review4.mp4', n:'Екатерина', c:'Алексеевское', vid:'1030014738'}
   ];
   var star='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>';
   var playIc='<div class="rev-play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div>';
   var track=document.getElementById('rev-track');
   track.innerHTML=REVIEWS.map(function(r){
     return '<div class="rev-card">'+
-      '<div class="rev-media" data-vid="'+r.vid+'">'+playIc+'<img loading="lazy" src="'+r.img+'" alt="Видео-отзыв: '+r.n+' из '+r.c+'"></div>'+
+      '<div class="rev-media" data-mp4="'+r.mp4+'">'+playIc+'<img loading="lazy" src="'+r.img+'" alt="Видео-отзыв: '+r.n+' из '+r.c+'"></div>'+
       '<div class="rev-cap"><div class="rev-av">'+r.n.charAt(0)+'</div>'+
       '<div><div class="rev-name">'+r.n+'</div><div class="rev-city">г. '+r.c+'</div>'+
       '<div class="rev-stars">'+star+star+star+star+star+'</div></div></div>'+
@@ -677,19 +677,22 @@
   window.addEventListener('resize', layout);
   layout(); auto();
 
-  /* ---------- VIDEO (Vimeo) — играет прямо в карточке ---------- */
+  /* ---------- VIDEO (локальный MP4) — играет прямо в карточке ---------- */
   track.addEventListener('click', function(e){
-    var m=e.target.closest('.rev-media'); if(!m || !m.dataset.vid || m.dataset.playing) return;
+    var m=e.target.closest('.rev-media'); if(!m || !m.dataset.mp4 || m.dataset.playing) return;
     m.dataset.playing='1'; userPlayed=true; clearInterval(timer); // стоп карусели, пока смотрят видео
-    var f=document.createElement('iframe');
-    f.src='https://player.vimeo.com/video/'+m.dataset.vid+'?autoplay=1&title=0&byline=0&portrait=0';
-    f.setAttribute('allow','autoplay; fullscreen; picture-in-picture');
-    f.setAttribute('allowfullscreen','');
-    m.appendChild(f);
+    var v=document.createElement('video');
+    v.src=m.dataset.mp4;
+    v.setAttribute('controls','');
+    v.setAttribute('playsinline','');
+    v.setAttribute('preload','auto');
+    v.autoplay=true; v.playsInline=true;
+    m.appendChild(v);
+    var p=v.play&&v.play(); if(p&&p.catch) p.catch(function(){});
   });
   function stopVideos(){
     track.querySelectorAll('.rev-media[data-playing]').forEach(function(m){
-      var f=m.querySelector('iframe'); if(f) f.remove();
+      var f=m.querySelector('iframe,video'); if(f){ if(f.pause){ try{f.pause();}catch(e){} } f.remove(); }
       m.removeAttribute('data-playing');
     });
   }
