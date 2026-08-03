@@ -347,18 +347,18 @@
 .kzn .reveal.in{ opacity:1; transform:none; }
 @media (prefers-reduced-motion: reduce){ .kzn .reveal{ opacity:1!important; transform:none!important; transition:none!important; } }
 /* плашка cookie */
-.kzn .cookie{ position:fixed; left:16px; right:16px; bottom:16px; z-index:120; margin:0 auto; max-width:520px;
-  display:flex; align-items:center; gap:14px; padding:14px 16px;
+.kzn .cookie{ position:fixed; left:12px; right:auto; bottom:12px; z-index:120; max-width:340px;
+  display:flex; align-items:center; gap:10px; padding:9px 10px 9px 13px;
   background:rgba(20,20,22,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-  border:1px solid var(--line2); border-radius:var(--radius); box-shadow:var(--shadow);
-  transform:translateY(140%); opacity:0; transition:transform .5s cubic-bezier(.22,.61,.36,1), opacity .5s; }
+  border:1px solid var(--line2); border-radius:12px; box-shadow:var(--shadow);
+  transform:translateY(160%); opacity:0; transition:transform .5s cubic-bezier(.22,.61,.36,1), opacity .5s; }
 .kzn .cookie.on{ transform:none; opacity:1; }
-.kzn .cookie p{ margin:0; font-size:.82rem; line-height:1.5; color:var(--t2); flex:1; }
+.kzn .cookie p{ margin:0; font-size:.72rem; line-height:1.4; color:var(--t2); flex:1; }
 .kzn .cookie a{ color:var(--acc2); text-decoration:none; border-bottom:1px solid rgba(167,139,250,.35); }
-.kzn .cookie .btn-ok{ flex:none; padding:9px 20px; border-radius:12px; font-family:'Unbounded',sans-serif; font-weight:600;
-  font-size:.82rem; background:var(--acc); color:#0a0a0a; transition:background .2s; }
+.kzn .cookie .btn-ok{ flex:none; padding:6px 15px; border-radius:9px; font-family:'Unbounded',sans-serif; font-weight:600;
+  font-size:.74rem; background:var(--acc); color:#0a0a0a; transition:background .2s; }
 .kzn .cookie .btn-ok:hover{ background:var(--acc2); }
-@media (max-width:520px){ .kzn .cookie{ flex-wrap:wrap; } .kzn .cookie .btn-ok{ width:100%; padding:11px; } }
+@media (max-width:400px){ .kzn .cookie{ left:10px; right:10px; max-width:none; } }
 </style>
 
 <!-- ===================== HEADER ===================== -->
@@ -622,7 +622,7 @@
 </div>
 
 <div class="cookie" id="kzn-cookie" role="dialog" aria-label="Уведомление об использовании файлов cookie">
-  <p>Мы используем файлы cookie, чтобы сайт работал лучше и был удобнее. Оставаясь на сайте, вы соглашаетесь на их использование.</p>
+  <p>Мы используем cookie для работы сайта.</p>
   <button type="button" class="btn-ok" id="kzn-cookie-ok">ОК</button>
 </div>
 
