@@ -346,6 +346,19 @@
 .kzn .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); will-change:opacity,transform; }
 .kzn .reveal.in{ opacity:1; transform:none; }
 @media (prefers-reduced-motion: reduce){ .kzn .reveal{ opacity:1!important; transform:none!important; transition:none!important; } }
+/* плашка cookie */
+.kzn .cookie{ position:fixed; left:16px; right:16px; bottom:16px; z-index:120; margin:0 auto; max-width:520px;
+  display:flex; align-items:center; gap:14px; padding:14px 16px;
+  background:rgba(20,20,22,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line2); border-radius:var(--radius); box-shadow:var(--shadow);
+  transform:translateY(140%); opacity:0; transition:transform .5s cubic-bezier(.22,.61,.36,1), opacity .5s; }
+.kzn .cookie.on{ transform:none; opacity:1; }
+.kzn .cookie p{ margin:0; font-size:.82rem; line-height:1.5; color:var(--t2); flex:1; }
+.kzn .cookie a{ color:var(--acc2); text-decoration:none; border-bottom:1px solid rgba(167,139,250,.35); }
+.kzn .cookie .btn-ok{ flex:none; padding:9px 20px; border-radius:12px; font-family:'Unbounded',sans-serif; font-weight:600;
+  font-size:.82rem; background:var(--acc); color:#0a0a0a; transition:background .2s; }
+.kzn .cookie .btn-ok:hover{ background:var(--acc2); }
+@media (max-width:520px){ .kzn .cookie{ flex-wrap:wrap; } .kzn .cookie .btn-ok{ width:100%; padding:11px; } }
 </style>
 
 <!-- ===================== HEADER ===================== -->
@@ -608,6 +621,11 @@
   </div>
 </div>
 
+<div class="cookie" id="kzn-cookie" role="dialog" aria-label="Уведомление об использовании файлов cookie">
+  <p>Мы используем файлы cookie, чтобы сайт работал лучше и был удобнее. Оставаясь на сайте, вы соглашаетесь на их использование.</p>
+  <button type="button" class="btn-ok" id="kzn-cookie-ok">ОК</button>
+</div>
+
 <script>
 (function(){
   /* =====================================================
@@ -857,6 +875,20 @@
       entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     },{ threshold:0.12, rootMargin:'0px 0px -8% 0px' });
     targets.forEach(function(el){ io.observe(el); });
+  })();
+
+  /* ---------- COOKIE-плашка ---------- */
+  (function(){
+    var bar=document.getElementById('kzn-cookie'); if(!bar) return;
+    var KEY='kzn_cookie_ok';
+    var ok; try{ ok=localStorage.getItem(KEY); }catch(e){ ok='1'; }
+    if(ok) return;
+    setTimeout(function(){ bar.classList.add('on'); }, 900);
+    document.getElementById('kzn-cookie-ok').addEventListener('click', function(){
+      try{ localStorage.setItem(KEY,'1'); }catch(e){}
+      bar.classList.remove('on');
+      setTimeout(function(){ bar.style.display='none'; }, 500);
+    });
   })();
 })();
 </script>
