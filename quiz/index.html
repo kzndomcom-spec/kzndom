@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Рассчитайте стоимость дома под ключ — Домком</title>
-<meta name="description" content="Пройдите короткий тест за 60 секунд и получите каталог готовых проектов и предварительный расчёт стоимости дома под ключ. Татарстан, Марий-Эл, Чувашия.">
+<title>Каталог проектов домов под ключ — Домком</title>
+<meta name="description" content="Каталог готовых проектов домов под ключ с планировками и ценами. Оставьте номер — пришлём каталог и подберём проект под ваш участок и бюджет. Татарстан, Марий-Эл, Чувашия.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,138 +32,105 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);}
 .kzn{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--t1);background:var(--bg);min-height:100vh;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;}
-.kzn h1,.kzn h2,.kzn h3,.kzn h4{font-family:'Unbounded',sans-serif;font-weight:800;line-height:1.14;letter-spacing:-.02em;margin:0;}
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;display:flex;flex-direction:column;}
+.kzn h1,.kzn h2,.kzn h3,.kzn h4{font-family:'Unbounded',sans-serif;font-weight:800;line-height:1.12;letter-spacing:-.02em;margin:0;}
 .kzn button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
 .kzn input{font-family:inherit;}
 .kzn a{color:inherit;}
-.kzn .wrap{max-width:1140px;margin:0 auto;padding:0 20px;}
+.kzn .wrap{max-width:1120px;margin:0 auto;padding:0 20px;width:100%;}
 
-/* декоративное свечение */
-.kzn .glow{position:fixed;top:-30%;left:50%;transform:translateX(-50%);width:900px;height:900px;pointer-events:none;z-index:0;
-  background:radial-gradient(circle, rgba(167,139,250,.14), transparent 62%);filter:blur(20px);}
+.kzn .glow{position:fixed;top:-28%;left:50%;transform:translateX(-50%);width:900px;height:900px;pointer-events:none;z-index:0;
+  background:radial-gradient(circle, rgba(167,139,250,.15), transparent 62%);filter:blur(20px);}
 
 /* шапка */
 .kzn .hdr{position:relative;z-index:3;border-bottom:1px solid var(--line);}
 .kzn .hdr-in{display:flex;align-items:center;justify-content:space-between;height:66px;}
-.kzn .logo{font-family:'Unbounded';font-weight:800;font-size:1.25rem;letter-spacing:.01em;}
+.kzn .logo{font-family:'Unbounded';font-weight:800;font-size:1.25rem;text-decoration:none;}
 .kzn .logo b{color:var(--acc2);}
-.kzn .hdr-phone{font-family:'Unbounded';font-weight:600;font-size:.98rem;white-space:nowrap;}
+.kzn .hdr-phone{font-family:'Unbounded';font-weight:600;font-size:.98rem;white-space:nowrap;text-decoration:none;}
 .kzn .hdr-phone span{color:var(--t2);font-family:'Inter';font-weight:500;font-size:.78rem;display:block;text-align:right;}
 
-/* сетка: панель + квиз */
-.kzn .stage{position:relative;z-index:2;padding:34px 0 60px;}
-.kzn .grid{display:grid;grid-template-columns:340px minmax(0,1fr);gap:26px;align-items:start;}
+/* герой */
+.kzn .stage{position:relative;z-index:2;flex:1;display:flex;align-items:center;padding:40px 0 64px;}
+.kzn .grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:40px;align-items:center;width:100%;}
 
-/* боковая панель */
-.kzn .side{position:sticky;top:20px;background:linear-gradient(180deg,var(--card),#101012);border:1px solid var(--line);
-  border-radius:var(--radius);padding:26px 24px;box-shadow:var(--shadow);}
-.kzn .side .eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;letter-spacing:.1em;
+.kzn .eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:var(--acc2);background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.22);
-  padding:6px 11px;border-radius:100px;margin-bottom:16px;}
-.kzn .side h1{font-size:1.5rem;margin-bottom:12px;}
-.kzn .side h1 em{font-style:normal;color:var(--acc2);}
-.kzn .side .lead{color:var(--t2);font-size:.9rem;line-height:1.6;margin-bottom:20px;}
-.kzn .bonus{border-top:1px solid var(--line);padding-top:18px;}
-.kzn .bonus-t{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;}
-.kzn .bonus li{list-style:none;display:flex;align-items:center;gap:11px;padding:7px 0;font-size:.92rem;font-weight:500;}
-.kzn .bonus ul{margin:0;padding:0;}
-.kzn .bonus .ic{flex:none;width:30px;height:30px;border-radius:9px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.2);
-  display:flex;align-items:center;justify-content:center;color:var(--acc2);}
-.kzn .bonus .ic svg{width:16px;height:16px;}
-.kzn .trust{display:flex;gap:18px;margin-top:20px;border-top:1px solid var(--line);padding-top:18px;}
-.kzn .trust div{flex:1;}
-.kzn .trust b{display:block;font-family:'Unbounded';font-weight:800;font-size:1.35rem;color:var(--t1);line-height:1;}
-.kzn .trust small{display:block;color:var(--t2);font-size:.74rem;margin-top:5px;line-height:1.35;}
+  padding:6px 12px;border-radius:100px;margin-bottom:18px;}
+.kzn .eyebrow svg{width:13px;height:13px;}
+.kzn h1{font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:16px;}
+.kzn h1 em{font-style:normal;color:var(--acc2);}
+.kzn .lead{color:var(--t2);font-size:1.05rem;line-height:1.6;max-width:520px;margin-bottom:26px;}
+.kzn .feats{display:flex;flex-direction:column;gap:12px;margin-bottom:8px;}
+.kzn .feats li{list-style:none;display:flex;align-items:center;gap:12px;font-size:1rem;font-weight:500;}
+.kzn .feats .ic{flex:none;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.12);
+  border:1px solid rgba(167,139,250,.2);display:flex;align-items:center;justify-content:center;color:var(--acc2);}
+.kzn .feats .ic svg{width:17px;height:17px;}
 
-/* карточка квиза */
-.kzn .quiz{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-  padding:30px 32px 28px;box-shadow:var(--shadow);min-height:520px;display:flex;flex-direction:column;}
+/* карточка каталога + форма */
+.kzn .card{background:linear-gradient(180deg,var(--card),#101012);border:1px solid var(--line);border-radius:20px;
+  padding:24px;box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.kzn .cat-img{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line2);margin-bottom:20px;
+  box-shadow:0 14px 34px -14px rgba(167,139,250,.45);aspect-ratio:16/10;}
+.kzn .cat-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.kzn .cat-badge{position:absolute;left:12px;top:12px;background:rgba(10,10,10,.72);backdrop-filter:blur(8px);
+  border:1px solid var(--line2);border-radius:100px;padding:6px 13px;font-size:.76rem;font-weight:600;
+  display:flex;align-items:center;gap:6px;}
+.kzn .cat-badge b{color:var(--acc2);font-family:'Unbounded';font-weight:700;}
 
-/* прогресс */
-.kzn .prog-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-.kzn .prog-lbl{font-size:.82rem;color:var(--t2);font-weight:500;}
-.kzn .prog-pct{font-family:'Unbounded';font-weight:700;font-size:.9rem;color:var(--acc2);}
-.kzn .prog-bar{height:7px;border-radius:100px;background:var(--card2);overflow:hidden;margin-bottom:26px;}
-.kzn .prog-fill{height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--acc-dk),var(--acc2));
-  transition:width .5s cubic-bezier(.22,.61,.36,1);}
-
-/* шаг */
-.kzn .qnum{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--acc2);margin-bottom:8px;}
-.kzn .qtitle{font-size:1.5rem;margin-bottom:22px;}
-.kzn .opts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-.kzn .opts.one{grid-template-columns:1fr;}
-.kzn .opt{display:flex;align-items:center;gap:13px;text-align:left;padding:16px 18px;border-radius:13px;
-  background:var(--field);border:1.5px solid var(--line);transition:.16s;font-size:1rem;font-weight:500;color:var(--t1);width:100%;}
-.kzn .opt:hover{border-color:var(--line2);background:var(--card2);}
+.kzn .form-t{font-family:'Unbounded';font-weight:700;font-size:1.05rem;margin-bottom:4px;}
+.kzn .form-s{color:var(--t2);font-size:.85rem;line-height:1.45;margin-bottom:16px;}
+.kzn .msgr-lbl{font-size:.8rem;color:var(--t2);font-weight:500;margin-bottom:9px;}
+.kzn .msgr{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:16px;}
+.kzn .opt{display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;padding:13px 6px;border-radius:12px;
+  background:var(--field);border:1.5px solid var(--line);transition:.16s;font-size:.86rem;font-weight:600;color:var(--t1);}
+.kzn .opt:hover{border-color:var(--line2);}
 .kzn .opt.sel{border-color:var(--acc);background:rgba(167,139,250,.1);}
-.kzn .opt .box{flex:none;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--line2);
-  display:flex;align-items:center;justify-content:center;transition:.16s;}
-.kzn .opt.sel .box{background:var(--acc);border-color:var(--acc);}
-.kzn .opt .box svg{width:13px;height:13px;color:#0a0a0a;opacity:0;transition:.16s;}
-.kzn .opt.sel .box svg{opacity:1;}
-.kzn .opt .oic{flex:none;width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--acc2);}
-.kzn .opt .oic svg{width:30px;height:30px;stroke-width:1.5;}
-
-/* навигация шага */
-.kzn .qnav{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:26px;}
-.kzn .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Unbounded';font-weight:600;
-  font-size:.95rem;padding:14px 26px;border-radius:13px;transition:.18s;}
-.kzn .btn-acc{background:var(--acc);color:#0a0a0a;}
-.kzn .btn-acc:hover{background:var(--acc2);}
-.kzn .btn-acc:disabled{opacity:.4;cursor:not-allowed;}
-.kzn .btn-line{background:var(--card2);color:#fff;border:1px solid var(--line);}
-.kzn .btn-line:hover{border-color:var(--line2);}
-.kzn .btn-block{width:100%;}
-.kzn .hint{font-size:.82rem;color:var(--t3);margin-left:auto;}
-.kzn .qnav .btn-next{margin-left:auto;}
-.kzn .qnav .btn-next.full{margin-left:0;}
-
-/* финальный шаг */
-.kzn .fin h3{font-size:1.5rem;margin-bottom:8px;}
-.kzn .fin p.sub{color:var(--t2);font-size:.92rem;line-height:1.55;margin:0 0 4px;}
-.kzn .fin-cat{display:flex;gap:20px;align-items:center;margin-bottom:20px;}
-.kzn .fin-cat img{flex:none;width:170px;height:170px;object-fit:cover;border-radius:14px;border:1px solid var(--line2);
-  box-shadow:0 14px 34px -14px rgba(167,139,250,.5);}
-.kzn .fin-cat-txt{flex:1;min-width:0;}
-.kzn .fin-cat-txt .qnum{margin-bottom:6px;}
-.kzn .msgr-lbl{font-size:.82rem;color:var(--t2);font-weight:500;margin-bottom:9px;}
-@media (max-width:560px){
-  .kzn .fin-cat{flex-direction:column;gap:14px;text-align:center;}
-  .kzn .fin-cat img{width:140px;height:140px;}
-}
-.kzn .msgr{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
-.kzn .msgr .opt{flex-direction:column;gap:8px;text-align:center;padding:14px 8px;justify-content:center;}
-.kzn .msgr .opt .oic{width:26px;height:26px;}
-.kzn .msgr .opt .oic svg{width:24px;height:24px;}
+.kzn .opt .oic{width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:var(--acc2);}
+.kzn .opt .oic svg{width:22px;height:22px;}
 .kzn .field{width:100%;background:var(--field);border:1.5px solid var(--line);border-radius:13px;color:#fff;
-  font-size:1.05rem;padding:15px 18px;margin-bottom:14px;transition:.16s;}
+  font-size:1.05rem;padding:15px 18px;margin-bottom:12px;transition:.16s;}
 .kzn .field:focus{outline:none;border-color:var(--acc);}
 .kzn .field.err{border-color:#e0555f;}
 .kzn .field::placeholder{color:var(--t3);}
-.kzn .consent{display:flex;align-items:flex-start;gap:9px;font-size:.78rem;color:var(--t2);line-height:1.5;margin-top:14px;}
+.kzn .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Unbounded';font-weight:600;
+  font-size:1rem;padding:16px 26px;border-radius:13px;transition:.18s;width:100%;}
+.kzn .btn-acc{background:var(--acc);color:#0a0a0a;}
+.kzn .btn-acc:hover{background:var(--acc2);}
+.kzn .consent{display:flex;align-items:flex-start;gap:9px;font-size:.76rem;color:var(--t2);line-height:1.5;margin-top:13px;}
 .kzn .consent input{margin-top:2px;accent-color:var(--acc);width:15px;height:15px;flex:none;}
 .kzn .consent a{color:var(--acc2);}
-.kzn .fin-secure{display:flex;align-items:center;gap:7px;color:var(--t3);font-size:.78rem;margin-top:14px;justify-content:center;}
-.kzn .fin-secure svg{width:14px;height:14px;}
+.kzn .secure{display:flex;align-items:center;gap:7px;color:var(--t3);font-size:.76rem;margin-top:12px;justify-content:center;}
+.kzn .secure svg{width:14px;height:14px;}
 
-/* итог-подсказка */
-.kzn .recap{background:var(--field);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:20px;}
-.kzn .recap b{font-family:'Unbounded';font-weight:600;font-size:.82rem;color:var(--t2);display:block;margin-bottom:8px;}
-.kzn .recap .chips{display:flex;flex-wrap:wrap;gap:7px;}
-.kzn .recap .chips span{font-size:.8rem;background:var(--card2);border:1px solid var(--line);padding:5px 11px;border-radius:100px;color:var(--t1);}
+/* переключение состояний формы */
+.kzn #lead-form{display:none;}
+.kzn #lead-form.on{display:block;}
+.kzn .prep,.kzn .done{display:none;text-align:center;padding:14px 4px 6px;}
+.kzn .prep.on,.kzn .done.on{display:block;}
+.kzn .spinner{width:56px;height:56px;margin:6px auto 18px;border-radius:50%;
+  border:4px solid rgba(167,139,250,.18);border-top-color:var(--acc);animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.kzn .prep h3{font-size:1.3rem;margin-bottom:18px;}
+.kzn .prep-steps{list-style:none;margin:0 0 20px;padding:0;text-align:left;max-width:290px;margin-left:auto;margin-right:auto;}
+.kzn .prep-steps li{display:flex;align-items:center;gap:11px;padding:8px 0;font-size:.94rem;color:var(--t3);
+  opacity:.5;transition:.35s;}
+.kzn .prep-steps li.on{opacity:1;color:var(--t1);}
+.kzn .prep-steps li .chk{flex:none;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;transition:.25s;}
+.kzn .prep-steps li.on .chk{background:var(--ok);border-color:var(--ok);}
+.kzn .prep-steps li .chk svg{width:12px;height:12px;color:#0a0a0a;opacity:0;transition:.2s;}
+.kzn .prep-steps li.on .chk svg{opacity:1;}
+.kzn .prep-bar{height:7px;border-radius:100px;background:var(--card2);overflow:hidden;max-width:290px;margin:0 auto;}
+.kzn .prep-fill{height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--acc-dk),var(--acc2));transition:width .3s linear;}
 
-/* модалка успеха */
-.kzn .modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px;
-  background:rgba(5,5,6,.72);backdrop-filter:blur(6px);}
-.kzn .modal.on{display:flex;}
-.kzn .m-card{max-width:420px;width:100%;background:var(--card);border:1px solid var(--line2);border-radius:20px;
-  padding:34px 30px;text-align:center;box-shadow:var(--shadow);}
-.kzn .m-ic{width:62px;height:62px;margin:0 auto 18px;border-radius:50%;background:rgba(95,191,134,.14);
+/* состояние готово */
+.kzn .done .m-ic{width:62px;height:62px;margin:6px auto 16px;border-radius:50%;background:rgba(95,191,134,.14);
   border:1px solid rgba(95,191,134,.4);display:flex;align-items:center;justify-content:center;color:var(--ok);}
-.kzn .m-ic svg{width:30px;height:30px;}
-.kzn .m-card h3{font-size:1.4rem;margin-bottom:10px;}
-.kzn .m-card p{color:var(--t2);font-size:.92rem;line-height:1.6;margin:0 0 20px;}
+.kzn .done .m-ic svg{width:30px;height:30px;}
+.kzn .done h3{font-size:1.35rem;margin-bottom:10px;}
+.kzn .done p{color:var(--t2);font-size:.92rem;line-height:1.6;margin:0 0 20px;}
+.kzn .done b{color:var(--t1);}
 
 /* cookie */
 .kzn .cookie{position:fixed;left:50%;bottom:12px;z-index:120;max-width:340px;display:flex;align-items:center;gap:10px;
@@ -173,26 +140,20 @@ html,body{margin:0;padding:0;background:var(--bg);}
 .kzn .cookie.on{transform:translateX(-50%);opacity:1;}
 .kzn .cookie p{margin:0;font-size:.72rem;line-height:1.4;color:var(--t2);flex:1;}
 .kzn .cookie .btn-ok{flex:none;padding:6px 15px;border-radius:9px;font-family:'Unbounded';font-weight:600;font-size:.74rem;
-  background:var(--acc);color:#0a0a0a;}
+  background:var(--acc);color:#0a0a0a;width:auto;}
 
-@media (max-width:900px){
-  .kzn .grid{grid-template-columns:1fr;gap:16px;}
-  .kzn .side{position:static;padding:22px 20px;}
-  .kzn .side h1{font-size:1.35rem;}
-  .kzn .trust{margin-top:16px;padding-top:16px;}
-  .kzn .quiz{padding:24px 20px;min-height:auto;}
+@media (max-width:880px){
+  .kzn .grid{grid-template-columns:1fr;gap:26px;}
+  .kzn .card{order:-1;}
+  .kzn .lead{max-width:none;}
+  .kzn .stage{padding:28px 0 56px;}
 }
 @media (max-width:560px){
   .kzn .hdr-phone span{display:none;}
-  .kzn .qtitle,.kzn .fin h3{font-size:1.25rem;}
-  .kzn .opts{grid-template-columns:1fr;}
-  .kzn .msgr{grid-template-columns:1fr;}
-  .kzn .msgr .opt{flex-direction:row;text-align:left;}
   .kzn .cookie{left:10px;right:10px;transform:translateY(160%);width:auto;max-width:none;}
   .kzn .cookie.on{transform:none;}
-  .kzn .qnav{flex-wrap:wrap;}
 }
-@media (prefers-reduced-motion:reduce){.kzn *{transition:none!important;}}
+@media (prefers-reduced-motion:reduce){.kzn *{transition:none!important;} .kzn .spinner{animation:none;}}
 </style>
 </head>
 <body>
@@ -201,61 +162,75 @@ html,body{margin:0;padding:0;background:var(--bg);}
 
 <header class="hdr">
   <div class="wrap hdr-in">
-    <a href="https://kzndom.com/" class="logo" style="text-decoration:none">ДОМ<b>КОМ</b></a>
-    <a href="tel:+79662505650" class="hdr-phone" style="text-decoration:none">+7 (966) 250-56-50<span>Татарстан · Марий-Эл · Чувашия</span></a>
+    <a href="https://kzndom.com/" class="logo">ДОМ<b>КОМ</b></a>
+    <a href="tel:+79662505650" class="hdr-phone">+7 (966) 250-56-50<span>Татарстан · Марий-Эл · Чувашия</span></a>
   </div>
 </header>
 
 <main class="stage">
   <div class="wrap grid">
 
-    <!-- боковая панель: оффер + бонус + гарантии -->
-    <aside class="side">
+    <!-- левая колонка: оффер -->
+    <div class="intro">
       <div class="eyebrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width:13px;height:13px"><path d="M12 2l2.9 6.3L22 9.3l-5 4.6 1.3 7L12 17.8 5.7 20.9 7 13.9l-5-4.6 7.1-1z"/></svg>
-        Бесплатно · 60 секунд
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h11l5 5v11H4z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+        Каталог проектов · Бесплатно
       </div>
-      <h1>Узнайте стоимость <em>вашего дома</em> под ключ</h1>
-      <p class="lead">Ответьте на 6 вопросов — подберём готовые проекты под ваши параметры и пришлём каталог с ценами. Без звонков и обязательств.</p>
+      <h1>Каталог готовых <em>проектов домов</em> под ключ</h1>
+      <p class="lead">Планировки, фото и цены готовых проектов ДОМКОМ. Оставьте номер — пришлём каталог и подберём проект под ваш участок и бюджет.</p>
+      <ul class="feats">
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></span> Готовые планировки с ценами под ключ</li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.3L22 9.3l-5 4.6 1.3 7L12 17.8 5.7 20.9 7 13.9l-5-4.6 7.1-1z"/></svg></span> Подбор проекта под ваш участок</li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h18M6 15h4M3 6h18v12H3z"/></svg></span> Помощь с ипотекой от 3% и договор</li>
+      </ul>
+    </div>
 
-      <div class="bonus">
-        <div class="bonus-t">Что вы получите</div>
-        <ul>
-          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h11l5 5v11H4z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></span> Каталог готовых проектов домов</li>
-          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span> Предварительный расчёт под ваши параметры</li>
-          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span> Подбор проектов под ваш участок</li>
+    <!-- правая колонка: каталог + форма -->
+    <div class="card">
+      <div class="cat-img">
+        <img src="/img/catalog.png" alt="Каталог проектов домов ДОМКОМ" loading="eager">
+        <div class="cat-badge">🏡 <b>150+</b> проектов</div>
+      </div>
+
+      <!-- состояние 1: форма -->
+      <form id="lead-form" class="state" autocomplete="on">
+        <div class="form-t">Получите каталог проектов</div>
+        <div class="form-s">Оставьте номер — вышлем каталог и предварительный расчёт.</div>
+        <div class="msgr-lbl">Куда прислать?</div>
+        <div class="msgr" id="msgr">
+          <button type="button" class="opt sel" data-val="МАКС"><span class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.4 8.7 8.7 0 0 1-3.8-.9L3 21l1.9-5.4a8.38 8.38 0 0 1-.9-3.6A8.38 8.38 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"/></svg></span>МАКС</button>
+          <button type="button" class="opt" data-val="Telegram"><span class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 4.3L2.9 11.4c-.6.2-.6 1 0 1.2l4.6 1.5 1.8 5.5c.2.5.8.6 1.1.2l2.5-2.5 4.6 3.4c.4.3 1 .1 1.1-.4l3-14.8c.1-.6-.5-1.1-1.1-.9z"/></svg></span>Telegram</button>
+          <button type="button" class="opt" data-val="Телефон"><span class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg></span>Телефон</button>
+        </div>
+        <input class="field" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+        <button type="submit" class="btn btn-acc">Получить каталог</button>
+        <label class="consent"><input type="checkbox" id="agree" checked> Соглашаюсь с обработкой персональных данных и <a href="https://kzndom.com/" target="_blank" rel="noopener">политикой конфиденциальности</a></label>
+        <div class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Не звоним без запроса. Данные не передаём третьим лицам.</div>
+      </form>
+
+      <!-- состояние 2: подготовка -->
+      <div class="prep state" id="prep">
+        <div class="spinner"></div>
+        <h3>Готовим ваш каталог…</h3>
+        <ul class="prep-steps" id="prep-steps">
+          <li data-i="0"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Подбираем проекты под вас</li>
+          <li data-i="1"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Добавляем актуальные цены</li>
+          <li data-i="2"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Формируем каталог</li>
         </ul>
+        <div class="prep-bar"><div class="prep-fill" id="prep-fill"></div></div>
       </div>
 
-      <div class="trust">
-        <div><b>7</b><small>месяцев — срок строительства</small></div>
-        <div><b>5 лет</b><small>гарантия по договору</small></div>
-        <div><b>от 3%</b><small>помощь с ипотекой</small></div>
+      <!-- состояние 3: готово -->
+      <div class="done state" id="done">
+        <div class="m-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h3>Каталог готов!</h3>
+        <p>Отправим каталог в <b id="done-msgr">МАКС</b> и свяжемся для подбора проекта. А пока — откройте каталог проектов прямо сейчас.</p>
+        <a href="https://kzndom.com/channels/" class="btn btn-acc" style="text-decoration:none">Открыть каталог проектов</a>
       </div>
-    </aside>
-
-    <!-- квиз -->
-    <section class="quiz" id="quiz">
-      <div class="prog-top">
-        <span class="prog-lbl" id="prog-lbl">Вопрос 1 из 6</span>
-        <span class="prog-pct" id="prog-pct">0%</span>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
-      <div id="step-body"></div>
-    </section>
+    </div>
 
   </div>
 </main>
-
-<!-- модалка успеха -->
-<div class="modal" id="modal">
-  <div class="m-card">
-    <div class="m-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
-    <h3>Заявка принята!</h3>
-    <p>Готовим для вас каталог проектов и расчёт. Менеджер свяжется в ближайшее время. А пока — загляните в каталог проектов ДОМКОМ.</p>
-    <a href="https://kzndom.com/channels/" class="btn btn-acc btn-block" style="text-decoration:none">Открыть каталог проектов</a>
-  </div>
-</div>
 
 <div class="cookie" id="cookie">
   <p>Мы используем cookie для работы сайта.</p>
@@ -267,201 +242,93 @@ html,body{margin:0;padding:0;background:var(--bg);}
   var CONFIG = {
     whatsapp:'79662505650',
     webhook:'https://kzndom-lead.kzndomcom.workers.dev',
-    telegram:{token:'',chatId:''},
     metrikaId:97508515, metrikaGoal:'lead'
   };
-  var LEAD_SOURCE = 'Квиз (Яндекс Директ)';
+  var LEAD_SOURCE='Каталог (Яндекс Директ)';
   var root=document.getElementById('kzn');
 
-  /* --- иконки для вариантов --- */
-  function ic(name){
-    var p={
-      house1:'<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>',
-      housem:'<path d="M3 12l9-8 9 8"/><path d="M6 11v9h12v-9"/><path d="M9 4.5V9"/>',
-      house2:'<path d="M4 10l8-6 8 6"/><path d="M6 9v11h12V9"/><path d="M6 14h12"/>',
-      garage:'<path d="M3 10l9-6 9 6v10H3z"/><path d="M7 20v-6h6v6"/><path d="M15 12h3v8"/>'
-    };
-    return '<span class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">'+(p[name]||'')+'</svg></span>';
-  }
-
-  /* --- вопросы --- */
-  var STEPS=[
-    {num:'Вопрос 1 из 6', q:'Какой дом вы планируете?', opts:[
-      {t:'Одноэтажный', i:'house1'},
-      {t:'С мансардой', i:'housem'},
-      {t:'Двухэтажный', i:'house2'},
-      {t:'С гаражом', i:'garage'}
-    ]},
-    {num:'Вопрос 2 из 6', q:'Из какого материала строим стены?', opts:[
-      {t:'Газобетон'},{t:'Кирпич'},{t:'Каркас'},{t:'Керамоблок'},{t:'Ещё не выбрал'}
-    ]},
-    {num:'Вопрос 3 из 6', q:'Какая площадь дома вам нужна?', opts:[
-      {t:'до 100 м²'},{t:'100–150 м²'},{t:'150–200 м²'},{t:'более 200 м²'}
-    ]},
-    {num:'Вопрос 4 из 6', q:'Есть ли участок под строительство?', opts:[
-      {t:'Участок уже есть'},{t:'Планирую покупать'},{t:'Нужна помощь с выбором'}
-    ], one:true},
-    {num:'Вопрос 5 из 6', q:'Когда планируете начать стройку?', opts:[
-      {t:'В этом сезоне'},{t:'В течение года'},{t:'Пока прицениваюсь'}
-    ], one:true},
-    {num:'Вопрос 6 из 6', q:'Как планируете финансировать?', opts:[
-      {t:'Ипотека'},{t:'Материнский капитал'},{t:'Свои средства'},{t:'Нужна консультация'}
-    ]}
-  ];
-  var TOTAL=STEPS.length; // финал = TOTAL (индекс)
-  var answers=new Array(TOTAL).fill(null);
-  var cur=0;
-  var body=document.getElementById('step-body');
-
-  function setProgress(){
-    var done = cur; // сколько шагов пройдено
-    var pct = Math.round((cur/(TOTAL+1))*100);
-    if(cur>TOTAL) pct=100;
-    document.getElementById('prog-fill').style.width=pct+'%';
-    document.getElementById('prog-pct').textContent=pct+'%';
-    document.getElementById('prog-lbl').textContent = cur<TOTAL ? STEPS[cur].num : 'Последний шаг';
-  }
-
-  function renderStep(){
-    var s=STEPS[cur];
-    var h='<div class="qnum">Шаг '+(cur+1)+'</div><h2 class="qtitle">'+s.q+'</h2>';
-    h+='<div class="opts'+(s.one?' one':'')+'">';
-    s.opts.forEach(function(o,i){
-      var sel = answers[cur]===o.t ? ' sel':'';
-      h+='<button type="button" class="opt'+sel+'" data-i="'+i+'" data-val="'+o.t+'">'+
-         (o.i?ic(o.i):'')+
-         '<span style="flex:1">'+o.t+'</span>'+
-         '<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>'+
-         '</button>';
+  /* выбор мессенджера */
+  var msgr=document.getElementById('msgr'), chosen='МАКС';
+  msgr.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      msgr.querySelectorAll('.opt').forEach(function(b){b.classList.remove('sel');});
+      btn.classList.add('sel'); chosen=btn.dataset.val;
     });
-    h+='</div>';
-    h+='<div class="qnav">'+
-       (cur>0?'<button type="button" class="btn btn-line" id="back">Назад</button>':'')+
-       '<button type="button" class="btn btn-acc btn-next'+(cur===0?' full':'')+'" id="next" disabled>Далее</button>'+
-       '</div>';
-    body.innerHTML=h;
-    if(answers[cur]) document.getElementById('next').disabled=false;
+  });
 
-    body.querySelectorAll('.opt').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        body.querySelectorAll('.opt').forEach(function(b){b.classList.remove('sel');});
-        btn.classList.add('sel');
-        answers[cur]=btn.dataset.val;
-        document.getElementById('next').disabled=false;
-      });
-    });
-    var back=document.getElementById('back');
-    if(back) back.addEventListener('click', function(){ cur--; setProgress(); renderStep(); scrollTop(); });
-    document.getElementById('next').addEventListener('click', function(){
-      if(!answers[cur]) return;
-      cur++; setProgress();
-      if(cur>=TOTAL) renderFinal(); else renderStep();
-      scrollTop();
-    });
-    setProgress();
-  }
+  /* телефон */
+  function pdigits(v){ var raw=String(v||'').replace(/\D/g,''); if(raw[0]==='8'||raw[0]==='7') raw=raw.slice(1); return raw.slice(0,10); }
+  function validPhone(v){ return pdigits(v).length===10; }
+  var inp=document.querySelector('input[name=phone]');
+  inp.setAttribute('inputmode','tel');
+  inp.addEventListener('input', function(){
+    inp.classList.remove('err');
+    if(!inp.value.replace(/\D/g,'').length){ inp.value=''; return; }
+    var raw=pdigits(inp.value);
+    var out='+7 ('+raw.slice(0,3);
+    if(raw.length>3) out+=') '+raw.slice(3,6);
+    if(raw.length>6) out+='-'+raw.slice(6,8);
+    if(raw.length>8) out+='-'+raw.slice(8,10);
+    inp.value=out;
+  });
+  inp.addEventListener('blur', function(){ if(inp.value && !validPhone(inp.value)) inp.classList.add('err'); });
 
-  function msgIcon(n){
-    var p={
-      max:'<path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.4 8.7 8.7 0 0 1-3.8-.9L3 21l1.9-5.4a8.38 8.38 0 0 1-.9-3.6A8.38 8.38 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"/>',
-      tg:'<path d="M21.5 4.3L2.9 11.4c-.6.2-.6 1 0 1.2l4.6 1.5 1.8 5.5c.2.5.8.6 1.1.2l2.5-2.5 4.6 3.4c.4.3 1 .1 1.1-.4l3-14.8c.1-.6-.5-1.1-1.1-.9z"/><path d="M8 14l9-6-6.5 7"/>',
-      phone:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/>'
-    };
-    return '<span class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+(p[n]||'')+'</svg></span>';
-  }
-
-  function renderFinal(){
-    var labels=['Тип дома','Материал','Площадь','Участок','Сроки','Финансы'];
-    var chips=answers.map(function(a,i){ return a?'<span>'+a+'</span>':''; }).join('');
-    var h='<div class="fin">'+
-      '<div class="fin-cat">'+
-        '<img src="/img/catalog.png" alt="Каталог проектов ДОМКОМ" loading="eager">'+
-        '<div class="fin-cat-txt"><div class="qnum">Готово! Ваш результат собран</div>'+
-        '<h3>Куда прислать каталог проектов и расчёт?</h3>'+
-        '<p class="sub">Оставьте номер и выберите удобный мессенджер — вышлем каталог готовых проектов и предварительную стоимость под ваши ответы.</p></div>'+
-      '</div>'+
-      '<div class="recap"><b>Ваши ответы:</b><div class="chips">'+chips+'</div></div>'+
-      '<div class="msgr-lbl">Куда отправить?</div>'+
-      '<div class="msgr" id="msgr">'+
-        '<button type="button" class="opt sel" data-val="МАКС">'+msgIcon('max')+'<span style="flex:1">МАКС</span></button>'+
-        '<button type="button" class="opt" data-val="Telegram">'+msgIcon('tg')+'<span style="flex:1">Telegram</span></button>'+
-        '<button type="button" class="opt" data-val="Телефон">'+msgIcon('phone')+'<span style="flex:1">Телефон</span></button>'+
-      '</div>'+
-      '<form id="lead-form" autocomplete="on">'+
-        '<input class="field" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>'+
-        '<button type="submit" class="btn btn-acc btn-block" style="font-size:1rem;padding:16px">Получить каталог и расчёт</button>'+
-        '<label class="consent"><input type="checkbox" id="agree" checked> Соглашаюсь с обработкой персональных данных и <a href="https://kzndom.com/" target="_blank" rel="noopener">политикой конфиденциальности</a></label>'+
-        '<div class="fin-secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Не звоним без запроса. Данные не передаём третьим лицам.</div>'+
-      '</form>'+
-      '</div>';
-    body.innerHTML=h;
-    setProgress();
-
-    var msgr=document.getElementById('msgr'), chosen='МАКС';
-    msgr.querySelectorAll('.opt').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        msgr.querySelectorAll('.opt').forEach(function(b){b.classList.remove('sel');});
-        btn.classList.add('sel'); chosen=btn.dataset.val;
-      });
-    });
-    var form=document.getElementById('lead-form');
-    var inp=form.querySelector('input[name=phone]');
-    maskPhone(inp);
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      if(!document.getElementById('agree').checked){ alert('Пожалуйста, подтвердите согласие на обработку данных.'); return; }
-      var v=inp.value;
-      if(!validPhone(v)){ inp.classList.add('err'); inp.focus(); return; }
-      inp.classList.remove('err');
-      var details='Мессенджер: '+chosen+'; '+
-        labels.map(function(l,i){return l+': '+(answers[i]||'—');}).join('; ');
-      reachGoal();
-      deliver({source:LEAD_SOURCE, phone:v, details:details});
-      openModal();
-    });
-  }
-
-  /* ---------- отправка (как на основном сайте) ---------- */
+  /* отправка в Bitrix */
   function reachGoal(){ try{ if(CONFIG.metrikaId && window.ym){ window.ym(CONFIG.metrikaId,'reachGoal',CONFIG.metrikaGoal); } }catch(e){} }
   function deliver(p){
-    var sent=false;
     if(CONFIG.webhook){
-      sent=true;
       try{
         fetch(CONFIG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)})
           .then(function(r){ if(!r||!r.ok){ waFallback(p); } }).catch(function(){ waFallback(p); });
-      }catch(e){ waFallback(p); }
+        return;
+      }catch(e){}
     }
-    if(!sent) waFallback(p);
+    waFallback(p);
   }
   function waFallback(p){
-    var msg='Здравствуйте! Заявка с квиза.%0A'+encodeURIComponent(p.source)+'%0AМой контакт: '+encodeURIComponent(p.phone)+(p.details?'%0A'+encodeURIComponent(p.details):'');
+    var msg='Здравствуйте! Хочу получить каталог проектов.%0A'+encodeURIComponent(p.source)+'%0AМой контакт: '+encodeURIComponent(p.phone)+(p.details?'%0A'+encodeURIComponent(p.details):'');
     window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+msg,'_blank');
   }
-  function pdigits(v){ var raw=String(v||'').replace(/\D/g,''); if(raw[0]==='8'||raw[0]==='7') raw=raw.slice(1); return raw.slice(0,10); }
-  function validPhone(v){ return pdigits(v).length===10; }
-  function maskPhone(inp){
-    inp.setAttribute('inputmode','tel');
-    inp.addEventListener('input', function(){
-      inp.classList.remove('err');
-      if(!inp.value.replace(/\D/g,'').length){ inp.value=''; return; }
-      var raw=pdigits(inp.value);
-      var out='+7 ('+raw.slice(0,3);
-      if(raw.length>3) out+=') '+raw.slice(3,6);
-      if(raw.length>6) out+='-'+raw.slice(6,8);
-      if(raw.length>8) out+='-'+raw.slice(8,10);
-      inp.value=out;
+
+  /* переключение состояний */
+  function show(id){
+    ['lead-form','prep','done'].forEach(function(s){
+      var el=document.getElementById(s); if(el) el.classList.toggle('on', s===id);
     });
-    inp.addEventListener('blur', function(){ if(inp.value && !validPhone(inp.value)) inp.classList.add('err'); });
+  }
+  document.getElementById('lead-form').classList.add('on');
+
+  /* анимация подготовки */
+  function runPrep(done){
+    var steps=document.querySelectorAll('#prep-steps li');
+    var fill=document.getElementById('prep-fill');
+    var i=0;
+    fill.style.width='8%';
+    var timers=[];
+    steps.forEach(function(li,idx){
+      timers.push(setTimeout(function(){
+        li.classList.add('on');
+        fill.style.width=Math.round(((idx+1)/steps.length)*100)+'%';
+      }, 500 + idx*750));
+    });
+    setTimeout(done, 500 + steps.length*750 + 500);
   }
 
-  function openModal(){ document.getElementById('modal').classList.add('on'); }
-  document.getElementById('modal').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('on'); });
-  function scrollTop(){ try{ document.getElementById('quiz').scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){} }
+  /* сабмит */
+  document.getElementById('lead-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!document.getElementById('agree').checked){ alert('Пожалуйста, подтвердите согласие на обработку данных.'); return; }
+    if(!validPhone(inp.value)){ inp.classList.add('err'); inp.focus(); return; }
+    inp.classList.remove('err');
+    var details='Мессенджер: '+chosen;
+    reachGoal();
+    deliver({source:LEAD_SOURCE, phone:inp.value, details:details});
+    document.getElementById('done-msgr').textContent=chosen;
+    show('prep');
+    runPrep(function(){ show('done'); });
+  });
 
-  renderStep();
-
-  /* ---------- cookie ---------- */
+  /* cookie */
   (function(){
     var bar=document.getElementById('cookie'); if(!bar) return;
     var KEY='kzn_cookie_ok', ok;
