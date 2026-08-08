@@ -338,10 +338,12 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
     for(var k=0;k<n;k++){ (function(k){ var d=document.createElement('button'); d.type='button';
       if(k===cIdx) d.className='on'; d.addEventListener('click', function(){ goC(k); }); dotsEl.appendChild(d); })(k); }
   }
-  function goC(i){
+  function goC(i,instant){
     var n=QUIZ[quizIdx].opts.length;
     cIdx=(i+n)%n;
+    if(instant) track.style.transition='none';
     track.style.transform='translateX('+(-cIdx*100)+'%)';
+    if(instant){ void track.offsetWidth; track.style.transition=''; }
     [].forEach.call(track.children,function(sl,si){ sl.classList.toggle('act', si===cIdx); });
     [].forEach.call(dotsEl.children,function(d,di){ d.className=(di===cIdx)?'on':''; });
   }
@@ -354,7 +356,8 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
       return '<div class="dkb__slide"><div class="dkb__illu">'+(ILLU[o.i]||'')+'</div><div class="dkb__slabel">'+o.t+'</div></div>';
     }).join('');
     paintDots(s.opts.length);
-    goC(cIdx);
+    goC(cIdx,true);
+    var car=document.querySelector('.dkb__carousel'); if(car){ car.style.animation='none'; void car.offsetWidth; car.style.animation='dkbFade .32s ease'; }
     setProgVals(s.prog, s.msg);
     sizeChip.classList.add('on');
     animateSize(sizeUpTo(idx));
