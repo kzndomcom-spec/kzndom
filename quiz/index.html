@@ -227,7 +227,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
       <!-- ШАГ: короткий кружок перед формой -->
       <div class="dkb__step" id="s-connect">
         <div class="dkb__spin"></div>
-        <h1 class="dkb__title" id="connect-title" style="font-size:clamp(20px,5.5vw,26px)">Подключаем…</h1>
+        <h1 class="dkb__title" id="connect-title" style="font-size:clamp(20px,5.5vw,26px)">Отправка…</h1>
       </div>
 
       <!-- ШАГ: телефон -->
@@ -442,7 +442,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
       chosen=btn.dataset.msgr;
       var caps={ 'MAX':'Введите ваш номер мессенджера MAX', 'Telegram':'Введите ваш номер мессенджера Telegram', 'Телефон':'Введите ваш номер телефона' };
       document.getElementById('phone-title').textContent=caps[chosen]||caps['Телефон'];
-      document.getElementById('connect-title').textContent='Подключаем '+(chosen==='MAX'?'MAX':'Telegram')+'…';
+      document.getElementById('connect-title').textContent='Отправка в '+(chosen==='MAX'?'MAX':'Telegram')+'…';
       show('s-connect');
       setTimeout(function(){ show('s-phone'); setTimeout(function(){ inp.focus(); }, 250); }, 1000);
     });
