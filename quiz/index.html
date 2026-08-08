@@ -230,8 +230,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 
       <!-- ШАГ: телефон -->
       <div class="dkb__step" id="s-phone">
-        <div class="dkb__cap" id="phone-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/></svg><span id="phone-cap-txt">Введите ваш номер телефона</span></div>
-        <h1 class="dkb__title" style="font-size:clamp(20px,5.5vw,27px)">Куда прислать каталог?</h1>
+        <h1 class="dkb__title" id="phone-title" style="font-size:clamp(20px,5.5vw,27px)">Введите ваш номер телефона</h1>
         <form class="dkb__btns" id="lead-form" autocomplete="on" style="gap:12px">
           <input class="dkb__field" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
           <button type="submit" class="dkb__btn dkb__btn--max">Получить каталог</button>
@@ -407,7 +406,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
     btn.addEventListener('click', function(){
       chosen=btn.dataset.msgr;
       var caps={ 'MAX':'Введите ваш номер в мессенджере MAX', 'Telegram':'Введите ваш номер в мессенджере Telegram', 'Телефон':'Введите ваш номер телефона' };
-      document.getElementById('phone-cap-txt').textContent=caps[chosen]||caps['Телефон'];
+      document.getElementById('phone-title').textContent=caps[chosen]||caps['Телефон'];
       show('s-phone');
       setTimeout(function(){ inp.focus(); }, 250);
     });
