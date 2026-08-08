@@ -203,7 +203,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
       <!-- ШАГ: формирование -->
       <div class="dkb__step" id="s-form">
         <div class="dkb__spin"></div>
-        <h1 class="dkb__title" style="font-size:clamp(20px,5.5vw,26px)">Формируем ваш каталог…</h1>
+        <h1 class="dkb__title" id="form-title" style="font-size:clamp(20px,5.5vw,26px)">Формируем ваш каталог…</h1>
         <div class="dkb__bignum" id="form-num">1.8 МБ</div>
       </div>
 
@@ -325,7 +325,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
     document.getElementById('cover').classList.toggle('hide', !COVER_ON[id]);
     sizeChip.classList.toggle('on', !!SIZE_ON[id]);
     if(id==='s-intro'){ progBox.classList.remove('on'); }
-    else if(id!=='s-quiz' && PROG[id]){ setProgVals(PROG[id].p, PROG[id].m); }
+    else if(id!=='s-quiz' && id!=='s-form' && PROG[id]){ setProgVals(PROG[id].p, PROG[id].m); }
     try{ window.scrollTo(0,0); }catch(e){}
   }
 
@@ -413,14 +413,26 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   }
   function finishQuiz(){
     show('s-form');
-    setProgVals(PROG['s-form'].p, PROG['s-form'].m);
-    var qtotal=sizeUpTo(QUIZ.length); curSize=qtotal;
-    var fn=document.getElementById('form-num'); fn.textContent=fmtMB(qtotal); sizeVal.textContent=fmtMB(qtotal);
-    animateForm(qtotal, qtotal+BULK, 2500);
+    var title=document.getElementById('form-title'), fn=document.getElementById('form-num');
+    // фаза 1: только вращающийся кружок, без надписи и мегабайтов
+    title.style.transition='none'; fn.style.transition='none';
+    title.style.opacity='0'; fn.style.opacity='0';
+    sizeChip.classList.remove('on');
+    setProgVals(80,'Почти готово…');
+    setTimeout(function(){
+      // фаза 2: включаем надпись + счётчик МБ и запускаем набор
+      title.style.transition='opacity .45s ease'; fn.style.transition='opacity .45s ease';
+      title.style.opacity='1'; fn.style.opacity='1';
+      sizeChip.classList.add('on');
+      setProgVals(PROG['s-form'].p, PROG['s-form'].m);
+      var qtotal=sizeUpTo(QUIZ.length); curSize=qtotal;
+      fn.textContent=fmtMB(qtotal); sizeVal.textContent=fmtMB(qtotal);
+      animateForm(qtotal, qtotal+BULK, 2000);
+    }, 900);
     setTimeout(function(){
       document.getElementById('ready-size').textContent=fmtMB(finalSize());
       show('s-ready');
-    }, 2800);
+    }, 3100);
   }
 
   /* выбор способа → форма */
