@@ -224,6 +224,12 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
         </div>
       </div>
 
+      <!-- ШАГ: короткий кружок перед формой -->
+      <div class="dkb__step" id="s-connect">
+        <div class="dkb__spin"></div>
+        <h1 class="dkb__title" id="connect-title" style="font-size:clamp(20px,5.5vw,26px)">Подключаем…</h1>
+      </div>
+
       <!-- ШАГ: телефон -->
       <div class="dkb__step" id="s-phone">
         <h1 class="dkb__title" id="phone-title" style="font-size:clamp(20px,5.5vw,27px)">Введите ваш номер телефона</h1>
@@ -297,7 +303,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   function setProgVals(p,m){ progBox.classList.add('on'); if(m!=null) progMsg.textContent=m; progFill.style.width=p+'%'; animatePct(p); }
 
   var PROG={ 's-form':{p:88,m:'Формируем ваш каталог…'}, 's-ready':{p:92,m:'Каталог готов — выберите способ'},
-             's-phone':{p:96,m:'Последний шаг — и каталог ваш!'}, 's-done':{p:100,m:'Готово! Каталог отправляется 🎉'} };
+             's-connect':{p:94,m:'Секунду…'}, 's-phone':{p:96,m:'Последний шаг — и каталог ваш!'}, 's-done':{p:100,m:'Готово! Каталог отправляется 🎉'} };
 
   /* объём */
   var sizeChip=document.getElementById('size-chip'), sizeVal=document.getElementById('size-val');
@@ -314,7 +320,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   }
 
   var COVER_ON={'s-intro':1}, SIZE_ON={'s-quiz':1,'s-form':1};
-  var SCREENS=['s-intro','s-quiz','s-form','s-ready','s-phone','s-done'];
+  var SCREENS=['s-intro','s-quiz','s-form','s-ready','s-connect','s-phone','s-done'];
   function show(id){
     SCREENS.forEach(function(s){ document.getElementById(s).classList.toggle('on', s===id); });
     document.getElementById('cover').classList.toggle('hide', !COVER_ON[id]);
@@ -436,8 +442,9 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
       chosen=btn.dataset.msgr;
       var caps={ 'MAX':'Введите ваш номер мессенджера MAX', 'Telegram':'Введите ваш номер мессенджера Telegram', 'Телефон':'Введите ваш номер телефона' };
       document.getElementById('phone-title').textContent=caps[chosen]||caps['Телефон'];
-      show('s-phone');
-      setTimeout(function(){ inp.focus(); }, 250);
+      document.getElementById('connect-title').textContent='Подключаем '+(chosen==='MAX'?'MAX':'Telegram')+'…';
+      show('s-connect');
+      setTimeout(function(){ show('s-phone'); setTimeout(function(){ inp.focus(); }, 250); }, 1000);
     });
   });
   document.querySelectorAll('[data-back]').forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.back); }); });
