@@ -123,7 +123,35 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 
 .dkb__foot{position:relative;z-index:1;margin-top:clamp(18px,3vh,28px);font-size:11px;letter-spacing:.04em;color:#555;text-align:center;}
 
-@media (prefers-reduced-motion:reduce){.dkb__step.on,.dkb__prog.on,.dkb__size.on{animation:none;} .dkb__spin,.dkb__size .dot{animation:none;} .dkb__prog-fill::after{display:none;}}
+/* карусель вариантов */
+.dkb__carousel{position:relative;width:100%;margin-bottom:14px;}
+.dkb__cviewport{width:100%;overflow:hidden;border-radius:18px;}
+.dkb__ctrack{display:flex;transition:transform .38s cubic-bezier(.22,.61,.36,1);}
+.dkb__slide{min-width:100%;padding:2px;}
+.dkb__illu{position:relative;aspect-ratio:16/11;border-radius:16px;overflow:hidden;
+  background:radial-gradient(120% 120% at 50% 12%, #1b1826 0%, #0f0f13 70%);border:1.5px solid #262433;
+  display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
+.dkb__slide.sel .dkb__illu{border-color:#A78BFA;box-shadow:0 0 0 3px rgba(167,139,250,.18);}
+.dkb__illu svg{width:82%;height:82%;overflow:visible;}
+.dkb__illu .grd{stroke:#3a3550;stroke-width:2;}
+.dkb__illu .win{fill:#B89DFF;stroke:none;}
+.dkb__slide.act .dkb__isvg{animation:dkbFloat 3.4s ease-in-out infinite;}
+.dkb__slide.act .win{animation:dkbWin 2.2s ease-in-out infinite;}
+@keyframes dkbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes dkbWin{0%,100%{opacity:.95}50%{opacity:.45}}
+.dkb__slabel{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(16px,4.4vw,19px);
+  margin-top:14px;color:#FFF;text-align:center;}
+.dkb__cbtn{position:absolute;top:calc(50% - 20px);transform:translateY(-50%);width:40px;height:40px;border-radius:50%;
+  background:rgba(12,12,14,.72);backdrop-filter:blur(8px);border:1.5px solid #2A2A2A;color:#fff;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;transition:.16s;}
+.dkb__cbtn:hover{border-color:#A78BFA;background:rgba(20,20,22,.9);}
+.dkb__cbtn svg{width:20px;height:20px;}
+.dkb__cbtn--prev{left:-6px;} .dkb__cbtn--next{right:-6px;}
+.dkb__dots{display:flex;gap:7px;justify-content:center;margin-bottom:16px;}
+.dkb__dots button{width:8px;height:8px;border-radius:100px;background:#2E2E36;border:none;cursor:pointer;padding:0;transition:.2s;}
+.dkb__dots button.on{width:22px;background:#A78BFA;}
+
+@media (prefers-reduced-motion:reduce){.dkb__step.on,.dkb__prog.on,.dkb__size.on{animation:none;} .dkb__spin,.dkb__size .dot,.dkb__slide.act .dkb__isvg,.dkb__slide.act .win{animation:none;} .dkb__prog-fill::after{display:none;}}
 </style>
 </head>
 <body>
@@ -158,10 +186,16 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
         </div>
       </div>
 
-      <!-- ШАГ: мини-квиз (рендерится JS) -->
+      <!-- ШАГ: мини-квиз (карусель, рендерится JS) -->
       <div class="dkb__step" id="s-quiz">
-        <h1 class="dkb__title" id="quiz-q">Вопрос</h1>
-        <div class="dkb__opts" id="quiz-opts"></div>
+        <h1 class="dkb__title" id="quiz-q" style="font-size:clamp(20px,5.4vw,27px);margin-bottom:16px">Вопрос</h1>
+        <div class="dkb__carousel">
+          <button type="button" class="dkb__cbtn dkb__cbtn--prev" id="c-prev" aria-label="Предыдущий"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="dkb__cviewport" id="c-viewport"><div class="dkb__ctrack" id="c-track"></div></div>
+          <button type="button" class="dkb__cbtn dkb__cbtn--next" id="c-next" aria-label="Следующий"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="dkb__dots" id="c-dots"></div>
+        <div class="dkb__btns"><button type="button" class="dkb__btn dkb__btn--max" id="c-select">Выбрать этот вариант</button></div>
         <button type="button" class="dkb__back" id="quiz-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> Назад</button>
       </div>
 
@@ -229,12 +263,29 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 
   var QUIZ=[
     { q:'Какие проекты вам ближе?', prog:18, msg:'Начинаем формировать каталог', label:'Стиль',
-      opts:[{t:'Хай-тек',mb:2.4},{t:'Классика',mb:2.3},{t:'Современные',mb:2.6},{t:'Барнхаус',mb:2.2}] },
+      opts:[{t:'Хай-тек',mb:2.4,i:'hitech'},{t:'Классика',mb:2.3,i:'classic'},{t:'Современные',mb:2.6,i:'modern'},{t:'Барнхаус',mb:2.2,i:'barn'}] },
     { q:'Сколько этажей?', prog:44, msg:'Отлично! Каталог пополняется', label:'Этажность',
-      opts:[{t:'Одноэтажные',mb:2.1},{t:'Двухэтажные',mb:2.4},{t:'С мансардой',mb:2.3}] },
+      opts:[{t:'Одноэтажные',mb:2.1,i:'floor1'},{t:'Двухэтажные',mb:2.4,i:'floor2'},{t:'С мансардой',mb:2.3,i:'mansard'}] },
     { q:'Какая площадь нужна?', prog:66, msg:'Почти всё — ещё один штрих', label:'Площадь',
-      opts:[{t:'до 100 м²',mb:2.0},{t:'100–150 м²',mb:2.3},{t:'150–200 м²',mb:2.5},{t:'200+ м²',mb:2.8}] }
+      opts:[{t:'до 100 м²',mb:2.0,i:'areaS'},{t:'100–150 м²',mb:2.3,i:'areaM'},{t:'150–200 м²',mb:2.5,i:'areaL'},{t:'200+ м²',mb:2.8,i:'areaXL'}] }
   ];
+
+  /* графические иллюстрации вариантов (viewBox 0 0 240 160) */
+  function svg(inner){ return '<svg class="dkb__isvg" viewBox="0 0 240 160" fill="none" stroke="#C9BCF2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">'+inner+'</svg>'; }
+  var G='<path class="grd" d="M24 134 H216"/>';
+  var ILLU={
+    hitech: svg(G+'<path d="M62 96 H176 V132 H62 Z"/><path d="M46 68 H150 V96 H46 Z"/><path d="M150 82 H190"/><path d="M100 68 V96"/><path d="M66 74 H134"/><rect class="win" x="76" y="104" width="30" height="20" rx="2"/><rect class="win" x="120" y="104" width="30" height="20" rx="2"/><rect class="win" x="60" y="74" width="30" height="16" rx="2"/>'),
+    classic: svg(G+'<path d="M78 92 H162 V132 H78 Z"/><path d="M66 92 L120 54 L174 92"/><path d="M150 66 V50 H160 V74"/><rect class="win" x="90" y="102" width="18" height="18" rx="2"/><rect class="win" x="132" y="102" width="18" height="18" rx="2"/><path d="M112 118 H128 V132 H112 Z"/>'),
+    modern: svg(G+'<path d="M58 92 H148 V132 H58 Z"/><path d="M148 74 H190 V132 H148 Z"/><path d="M58 92 L96 72 L148 74"/><rect class="win" x="72" y="102" width="34" height="24" rx="2"/><rect class="win" x="160" y="86" width="18" height="30" rx="2"/>'),
+    barn: svg(G+'<path d="M80 132 V78 L120 44 L160 78 V132 Z"/><path d="M98 132 V94"/><path d="M120 132 V86"/><path d="M142 132 V94"/><rect class="win" x="108" y="66" width="24" height="34" rx="2"/>'),
+    floor1: svg(G+'<path d="M52 98 H188 V132 H52 Z"/><path d="M40 98 L120 64 L200 98"/><rect class="win" x="70" y="106" width="22" height="18" rx="2"/><rect class="win" x="148" y="106" width="22" height="18" rx="2"/><path d="M112 110 H128 V132 H112 Z"/>'),
+    floor2: svg(G+'<path d="M74 70 H166 V132 H74 Z"/><path d="M62 70 L120 42 L178 70"/><rect class="win" x="86" y="80" width="18" height="16" rx="2"/><rect class="win" x="136" y="80" width="18" height="16" rx="2"/><rect class="win" x="86" y="104" width="18" height="16" rx="2"/><rect class="win" x="136" y="104" width="18" height="16" rx="2"/><path d="M111 114 H129 V132 H111 Z"/>'),
+    mansard: svg(G+'<path d="M74 96 H166 V132 H74 Z"/><path d="M62 96 L86 60 H154 L178 96"/><path d="M110 60 L120 48 L130 60"/><rect class="win" x="112" y="66" width="16" height="14" rx="2"/><rect class="win" x="88" y="104" width="20" height="18" rx="2"/><rect class="win" x="132" y="104" width="20" height="18" rx="2"/>'),
+    areaS: svg('<path d="M78 54 H162 V128 H78 Z"/><path d="M120 54 V128"/><path d="M78 94 H120"/><rect class="win" x="126" y="60" width="30" height="28" rx="2"/>'),
+    areaM: svg('<path d="M64 50 H176 V130 H64 Z"/><path d="M120 50 V130"/><path d="M64 90 H120"/><path d="M120 88 H176"/><rect class="win" x="126" y="94" width="44" height="30" rx="2"/>'),
+    areaL: svg('<path d="M56 48 H184 V132 H56 Z"/><path d="M120 48 V132"/><path d="M56 88 H120"/><path d="M120 86 H184"/><path d="M150 86 V132"/><rect class="win" x="62" y="94" width="52" height="32" rx="2"/>'),
+    areaXL: svg('<path d="M48 44 H192 V134 H48 Z"/><path d="M120 44 V134"/><path d="M48 86 H120"/><path d="M120 82 H192"/><path d="M84 86 V134"/><path d="M156 82 V134"/><rect class="win" x="126" y="88" width="28" height="44" rx="2"/>')
+  };
   var answers=[]; // {t,mb}
   function sizeUpTo(n){ var s=BASE; for(var i=0;i<n && i<answers.length;i++){ if(answers[i]) s+=answers[i].mb; } return s; }
   function finalSize(){ return sizeUpTo(QUIZ.length); }
@@ -278,34 +329,61 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
     try{ window.scrollTo(0,0); }catch(e){}
   }
 
-  /* мини-квиз */
-  var quizIdx=0;
-  var qEl=document.getElementById('quiz-q'), optsEl=document.getElementById('quiz-opts'), backEl=document.getElementById('quiz-back');
+  /* мини-квиз — карусель */
+  var quizIdx=0, cIdx=0;
+  var qEl=document.getElementById('quiz-q'), track=document.getElementById('c-track'),
+      dotsEl=document.getElementById('c-dots'), backEl=document.getElementById('quiz-back'),
+      viewport=document.getElementById('c-viewport');
+  function paintDots(n){
+    dotsEl.innerHTML='';
+    for(var k=0;k<n;k++){ (function(k){ var d=document.createElement('button'); d.type='button';
+      if(k===cIdx) d.className='on'; d.addEventListener('click', function(){ goC(k); }); dotsEl.appendChild(d); })(k); }
+  }
+  function goC(i){
+    var n=QUIZ[quizIdx].opts.length;
+    cIdx=(i+n)%n;
+    track.style.transform='translateX('+(-cIdx*100)+'%)';
+    [].forEach.call(track.children,function(sl,si){ sl.classList.toggle('act', si===cIdx); });
+    [].forEach.call(dotsEl.children,function(d,di){ d.className=(di===cIdx)?'on':''; });
+  }
   function renderQuiz(idx){
     quizIdx=idx; var s=QUIZ[idx];
     qEl.textContent=s.q;
-    optsEl.className='dkb__opts '+(s.opts.length%2===0?'c2':'c1');
-    optsEl.innerHTML='';
-    s.opts.forEach(function(o){
-      var b=document.createElement('button'); b.type='button'; b.className='dkb__opt'; b.textContent=o.t;
-      if(answers[idx] && answers[idx].t===o.t) b.classList.add('sel');
-      b.addEventListener('click', function(){
-        answers[idx]={t:o.t,mb:o.mb,label:s.label};
-        animateSize(sizeUpTo(idx+1));
-        optsEl.querySelectorAll('.dkb__opt').forEach(function(x){x.classList.remove('sel');});
-        b.classList.add('sel');
-        setTimeout(function(){
-          if(idx+1<QUIZ.length) renderQuiz(idx+1);
-          else finishQuiz();
-        }, 260);
-      });
-      optsEl.appendChild(b);
-    });
-    backEl.style.visibility='visible';
+    cIdx=0;
+    if(answers[idx]){ for(var j=0;j<s.opts.length;j++){ if(s.opts[j].t===answers[idx].t){ cIdx=j; break; } } }
+    track.innerHTML=s.opts.map(function(o){
+      return '<div class="dkb__slide"><div class="dkb__illu">'+(ILLU[o.i]||'')+'</div><div class="dkb__slabel">'+o.t+'</div></div>';
+    }).join('');
+    paintDots(s.opts.length);
+    goC(cIdx);
     setProgVals(s.prog, s.msg);
     sizeChip.classList.add('on');
     animateSize(sizeUpTo(idx));
   }
+  function selectCurrent(){
+    var s=QUIZ[quizIdx], o=s.opts[cIdx];
+    answers[quizIdx]={t:o.t,mb:o.mb,label:s.label};
+    animateSize(sizeUpTo(quizIdx+1));
+    var sl=track.children[cIdx]; if(sl) sl.classList.add('sel');
+    setTimeout(function(){
+      if(quizIdx+1<QUIZ.length) renderQuiz(quizIdx+1);
+      else finishQuiz();
+    }, 300);
+  }
+  document.getElementById('c-prev').addEventListener('click', function(){ goC(cIdx-1); });
+  document.getElementById('c-next').addEventListener('click', function(){ goC(cIdx+1); });
+  document.getElementById('c-select').addEventListener('click', selectCurrent);
+
+  /* свайп */
+  var tsx=null,tsy=null;
+  viewport.addEventListener('touchstart', function(e){ tsx=e.touches[0].clientX; tsy=e.touches[0].clientY; }, {passive:true});
+  viewport.addEventListener('touchend', function(e){
+    if(tsx===null) return;
+    var dx=e.changedTouches[0].clientX-tsx, dy=e.changedTouches[0].clientY-tsy;
+    if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)){ goC(cIdx+(dx<0?1:-1)); }
+    tsx=null;
+  }, {passive:true});
+
   backEl.addEventListener('click', function(){
     if(quizIdx>0) renderQuiz(quizIdx-1);
     else show('s-intro');
