@@ -283,7 +283,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   };
   var answers=[]; // {t,mb}
   function sizeUpTo(n){ var s=BASE; for(var i=0;i<n && i<answers.length;i++){ if(answers[i]) s+=answers[i].mb; } return s; }
-  var BULK=5.5; // основной объём каталога добавляется на экране формирования
+  var BULK=15.5; // основной объём каталога добавляется на экране формирования
   function finalSize(){ return sizeUpTo(QUIZ.length)+BULK; }
 
   /* прогресс */
