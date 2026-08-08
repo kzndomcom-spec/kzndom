@@ -262,11 +262,11 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 
   var QUIZ=[
     { q:'Какие проекты вам ближе?', prog:18, msg:'Начинаем формировать каталог', label:'Стиль',
-      opts:[{t:'Хай-тек',mb:2.4,i:'hitech'},{t:'Классика',mb:2.3,i:'classic'},{t:'Современные',mb:2.6,i:'modern'},{t:'Барнхаус',mb:2.2,i:'barn'}] },
+      opts:[{t:'Хай-тек',mb:0.7,i:'hitech'},{t:'Классика',mb:0.6,i:'classic'},{t:'Современные',mb:0.8,i:'modern'},{t:'Барнхаус',mb:0.6,i:'barn'}] },
     { q:'Сколько этажей?', prog:44, msg:'Отлично! Каталог пополняется', label:'Этажность',
-      opts:[{t:'Одноэтажные',mb:2.1,i:'floor1'},{t:'Двухэтажные',mb:2.4,i:'floor2'},{t:'С мансардой',mb:2.3,i:'mansard'}] },
+      opts:[{t:'Одноэтажные',mb:0.5,i:'floor1'},{t:'Двухэтажные',mb:0.7,i:'floor2'},{t:'С мансардой',mb:0.6,i:'mansard'}] },
     { q:'Какая площадь нужна?', prog:66, msg:'Почти всё — ещё один штрих', label:'Площадь',
-      opts:[{t:'до 100 м²',mb:2.0,i:'areaS'},{t:'100–150 м²',mb:2.3,i:'areaM'},{t:'150–200 м²',mb:2.5,i:'areaL'},{t:'200+ м²',mb:2.8,i:'areaXL'}] }
+      opts:[{t:'до 100 м²',mb:0.4,i:'areaS'},{t:'100–150 м²',mb:0.6,i:'areaM'},{t:'150–200 м²',mb:0.7,i:'areaL'},{t:'200+ м²',mb:0.9,i:'areaXL'}] }
   ];
 
   /* графические иллюстрации вариантов (viewBox 0 0 240 160) */
@@ -287,7 +287,8 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   };
   var answers=[]; // {t,mb}
   function sizeUpTo(n){ var s=BASE; for(var i=0;i<n && i<answers.length;i++){ if(answers[i]) s+=answers[i].mb; } return s; }
-  function finalSize(){ return sizeUpTo(QUIZ.length); }
+  var BULK=4.8; // основной объём каталога добавляется на экране формирования
+  function finalSize(){ return sizeUpTo(QUIZ.length)+BULK; }
 
   /* прогресс */
   var progBox=document.getElementById('prog'), progFill=document.getElementById('prog-fill'),
@@ -397,11 +398,25 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 
   document.getElementById('btn-start').addEventListener('click', function(){ show('s-quiz'); renderQuiz(0); });
 
+  function animateForm(from,to,dur){
+    if(sizeTimer) clearInterval(sizeTimer);
+    var fn=document.getElementById('form-num'), startTs=null;
+    function frame(ts){
+      if(startTs===null) startTs=ts;
+      var k=Math.min(1,(ts-startTs)/dur);
+      var e=0.5-0.5*Math.cos(Math.PI*k); // плавный ease
+      var v=from+(to-from)*e;
+      fn.textContent=fmtMB(v); sizeVal.textContent=fmtMB(v);
+      if(k<1) requestAnimationFrame(frame); else { curSize=to; fn.textContent=fmtMB(to); sizeVal.textContent=fmtMB(to); }
+    }
+    requestAnimationFrame(frame);
+  }
   function finishQuiz(){
     show('s-form');
     setProgVals(PROG['s-form'].p, PROG['s-form'].m);
-    var fn=document.getElementById('form-num'); fn.textContent=fmtMB(curSize);
-    animateSize(finalSize(), fn);
+    var qtotal=sizeUpTo(QUIZ.length); curSize=qtotal;
+    var fn=document.getElementById('form-num'); fn.textContent=fmtMB(qtotal); sizeVal.textContent=fmtMB(qtotal);
+    animateForm(qtotal, qtotal+BULK, 2500);
     setTimeout(function(){
       document.getElementById('ready-size').textContent=fmtMB(finalSize());
       show('s-ready');
