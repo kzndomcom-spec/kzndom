@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Каталог проектов домов под ключ — Домком</title>
-<meta name="description" content="Скачайте каталог готовых проектов домов под ключ с планировками и ценами. Татарстан, Марий-Эл, Чувашия.">
+<meta name="description" content="Соберите каталог готовых проектов домов под ключ под ваш вкус и получите удобным способом. Татарстан, Марий-Эл, Чувашия.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,30 +35,35 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 .dkb__main{position:relative;z-index:1;width:100%;max-width:400px;text-align:center;
   display:flex;flex-direction:column;align-items:center;}
 
-/* прогресс-бар (Marquiz-style) */
-.dkb__prog{width:100%;margin-bottom:clamp(18px,3vh,26px);display:none;}
+/* прогресс-бар */
+.dkb__prog{width:100%;margin-bottom:12px;display:none;}
 .dkb__prog.on{display:block;animation:dkbFade .4s ease;}
 .dkb__prog-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;gap:12px;}
 .dkb__prog-msg{font-size:13px;font-weight:600;color:#C9BCF2;text-align:left;line-height:1.3;}
 .dkb__prog-pct{font-family:'Unbounded',sans-serif;font-weight:700;font-size:15px;color:#B89DFF;flex:none;}
-.dkb__prog-track{height:9px;border-radius:100px;background:#1A1A1D;overflow:hidden;position:relative;
-  box-shadow:inset 0 1px 2px rgba(0,0,0,.5);}
+.dkb__prog-track{height:9px;border-radius:100px;background:#1A1A1D;overflow:hidden;position:relative;box-shadow:inset 0 1px 2px rgba(0,0,0,.5);}
 .dkb__prog-fill{height:100%;width:0;border-radius:100px;position:relative;overflow:hidden;
-  background:linear-gradient(90deg,#8E6EF0,#B89DFF);transition:width .6s cubic-bezier(.22,.61,.36,1);
-  box-shadow:0 0 14px rgba(167,139,250,.55);}
+  background:linear-gradient(90deg,#8E6EF0,#B89DFF);transition:width .6s cubic-bezier(.22,.61,.36,1);box-shadow:0 0 14px rgba(167,139,250,.55);}
 .dkb__prog-fill::after{content:"";position:absolute;inset:0;border-radius:100px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
-  transform:translateX(-100%);animation:dkbShine 1.8s ease-in-out infinite;}
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:translateX(-100%);animation:dkbShine 1.8s ease-in-out infinite;}
 @keyframes dkbShine{0%{transform:translateX(-100%)}60%,100%{transform:translateX(220%)}}
+
+/* чип «формируется X МБ» */
+.dkb__size{display:none;align-items:center;justify-content:center;gap:8px;margin-bottom:clamp(16px,2.6vh,22px);
+  font-size:13px;color:#9a9a9a;font-weight:500;}
+.dkb__size.on{display:inline-flex;animation:dkbFade .4s ease;}
+.dkb__size .dot{width:8px;height:8px;border-radius:50%;background:#5FBF86;box-shadow:0 0 8px rgba(95,191,134,.7);animation:dkbPulse 1s ease-in-out infinite;}
+@keyframes dkbPulse{0%,100%{opacity:1}50%{opacity:.35}}
+.dkb__size b{font-family:'Unbounded',sans-serif;font-weight:700;color:#fff;font-size:14px;}
 
 .dkb__cover{width:100%;display:flex;justify-content:center;transition:opacity .3s ease;}
 .dkb__cover.hide{display:none;}
 .dkb__cover img{width:auto;max-width:230px;max-height:34vh;height:auto;display:block;
   margin:0 auto clamp(18px,3vh,28px);filter:drop-shadow(0 24px 44px rgba(0,0,0,.55)) drop-shadow(0 8px 22px rgba(167,139,250,.28));}
 
-.dkb__title{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(22px,6vw,31px);
-  line-height:1.1;letter-spacing:-.015em;margin:0 0 10px;color:#FFF;}
-.dkb__sub{color:#8A8A8A;font-size:clamp(13.5px,3.5vw,15px);line-height:1.55;margin:0 auto clamp(22px,3.8vh,30px);max-width:330px;}
+.dkb__title{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(21px,5.6vw,29px);
+  line-height:1.12;letter-spacing:-.015em;margin:0 0 10px;color:#FFF;}
+.dkb__sub{color:#8A8A8A;font-size:clamp(13.5px,3.5vw,15px);line-height:1.55;margin:0 auto clamp(20px,3.4vh,28px);max-width:330px;}
 
 .dkb__btns{display:flex;flex-direction:column;gap:12px;width:100%;}
 .dkb__btn{position:relative;display:flex;align-items:center;justify-content:center;width:100%;
@@ -71,7 +76,16 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 .dkb__btn--max:hover{background:#B89DFF;}
 .dkb__btn--dk{background:#141414;color:#FFF;border-color:#2A2A2A;}
 .dkb__btn--dk:hover{border-color:#A78BFA;background:#1C1C1C;}
-.dkb__btn .sz{margin-left:8px;font-weight:600;opacity:.72;font-size:.9em;}
+
+/* опции квиза */
+.dkb__opts{display:grid;gap:10px;width:100%;}
+.dkb__opts.c2{grid-template-columns:1fr 1fr;}
+.dkb__opts.c1{grid-template-columns:1fr;}
+.dkb__opt{padding:16px 14px;border-radius:14px;background:#141414;border:1.5px solid #2A2A2A;color:#FFF;
+  font-family:'Unbounded',sans-serif;font-weight:600;font-size:15px;cursor:pointer;transition:.16s;
+  display:flex;align-items:center;justify-content:center;text-align:center;min-height:56px;}
+.dkb__opt:hover{border-color:#A78BFA;background:#1C1C1C;}
+.dkb__opt.sel{border-color:#A78BFA;background:rgba(167,139,250,.14);}
 
 .dkb__field{width:100%;background:#141414;border:1.5px solid #2A2A2A;border-radius:16px;color:#FFF;
   font-size:18px;padding:16px 20px;text-align:center;transition:.16s;font-family:'Inter';}
@@ -90,34 +104,26 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 .dkb__fine a{color:#7a6ba8;text-decoration:none;}
 .dkb__fine a:hover{color:#A78BFA;}
 
-/* шаги */
 .dkb__step{display:none;width:100%;flex-direction:column;align-items:center;}
 .dkb__step.on{display:flex;animation:dkbRise .4s ease;}
 @keyframes dkbRise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
 @keyframes dkbFade{from{opacity:0}to{opacity:1}}
 
-/* обработка */
-.dkb__spin{width:56px;height:56px;margin:6px auto 20px;border-radius:50%;
+/* формирование */
+.dkb__spin{width:56px;height:56px;margin:6px auto 18px;border-radius:50%;
   border:4px solid rgba(167,139,250,.18);border-top-color:#A78BFA;animation:dkbSpin .8s linear infinite;}
 @keyframes dkbSpin{to{transform:rotate(360deg)}}
-.dkb__psteps{list-style:none;margin:0 auto;padding:0;text-align:left;max-width:290px;}
-.dkb__psteps li{display:flex;align-items:center;gap:11px;padding:8px 0;font-size:14px;color:#555;opacity:.45;transition:.35s;}
-.dkb__psteps li.on{opacity:1;color:#FFF;}
-.dkb__psteps li .chk{flex:none;width:22px;height:22px;border-radius:50%;border:1.5px solid #2A2A2A;
-  display:flex;align-items:center;justify-content:center;transition:.25s;}
-.dkb__psteps li.on .chk{background:#5FBF86;border-color:#5FBF86;}
-.dkb__psteps li .chk svg{width:12px;height:12px;color:#0A0A0A;opacity:0;transition:.2s;}
-.dkb__psteps li.on .chk svg{opacity:1;}
+.dkb__bignum{font-family:'Unbounded',sans-serif;font-weight:800;font-size:34px;color:#B89DFF;margin-top:6px;letter-spacing:-.02em;}
 
-/* готово */
 .dkb__ok{width:60px;height:60px;margin:4px auto 16px;border-radius:50%;background:rgba(95,191,134,.14);
   border:1px solid rgba(95,191,134,.4);display:flex;align-items:center;justify-content:center;color:#5FBF86;}
 .dkb__ok svg{width:30px;height:30px;}
+.dkb__pill{display:inline-flex;align-items:center;gap:7px;background:rgba(95,191,134,.12);border:1px solid rgba(95,191,134,.35);
+  border-radius:100px;padding:6px 14px;font-size:13px;font-weight:600;color:#5FBF86;margin-bottom:16px;}
 
-.dkb__foot{position:relative;z-index:1;margin-top:clamp(18px,3vh,28px);font-size:11px;
-  letter-spacing:.04em;color:#555;text-align:center;}
+.dkb__foot{position:relative;z-index:1;margin-top:clamp(18px,3vh,28px);font-size:11px;letter-spacing:.04em;color:#555;text-align:center;}
 
-@media (prefers-reduced-motion:reduce){.dkb__step.on,.dkb__prog.on{animation:none;} .dkb__spin{animation:none;} .dkb__prog-fill::after{display:none;}}
+@media (prefers-reduced-motion:reduce){.dkb__step.on,.dkb__prog.on,.dkb__size.on{animation:none;} .dkb__spin,.dkb__size .dot{animation:none;} .dkb__prog-fill::after{display:none;}}
 </style>
 </head>
 <body>
@@ -135,24 +141,43 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
         <div class="dkb__prog-track"><div class="dkb__prog-fill" id="prog-fill"></div></div>
       </div>
 
+      <!-- чип объёма каталога -->
+      <div class="dkb__size" id="size-chip"><span class="dot"></span> Каталог формируется: <b id="size-val">1.8 МБ</b></div>
+
       <div class="dkb__cover" id="cover"><img src="/img/catalog.png" alt="Каталог проектов домов ДОМКОМ" loading="eager"></div>
 
-      <!-- ШАГ 1: скачать -->
-      <div class="dkb__step on" id="s-dl">
+      <!-- ШАГ: старт -->
+      <div class="dkb__step on" id="s-intro">
         <h1 class="dkb__title">Каталог проектов домов под ключ</h1>
-        <p class="dkb__sub">Планировки, фото и цены готовых проектов ДОМКОМ — в одном файле.</p>
+        <p class="dkb__sub">Соберём каталог под ваш вкус за 3 шага — с планировками, фото и ценами.</p>
         <div class="dkb__btns">
-          <button type="button" class="dkb__btn dkb__btn--max" id="btn-dl">
+          <button type="button" class="dkb__btn dkb__btn--max" id="btn-start">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
-            Скачать каталог<span class="sz" id="cat-size">· 5.3 МБ</span>
+            Сформировать и скачать
           </button>
         </div>
       </div>
 
-      <!-- ШАГ 2: куда получить -->
-      <div class="dkb__step" id="s-dest">
-        <h1 class="dkb__title">Куда отправить каталог?</h1>
-        <p class="dkb__sub">Выберите, где вам удобно получить файл каталога.</p>
+      <!-- ШАГ: мини-квиз (рендерится JS) -->
+      <div class="dkb__step" id="s-quiz">
+        <h1 class="dkb__title" id="quiz-q">Вопрос</h1>
+        <div class="dkb__opts" id="quiz-opts"></div>
+        <button type="button" class="dkb__back" id="quiz-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> Назад</button>
+      </div>
+
+      <!-- ШАГ: формирование -->
+      <div class="dkb__step" id="s-form">
+        <div class="dkb__spin"></div>
+        <h1 class="dkb__title" style="font-size:clamp(20px,5.5vw,26px)">Формируем ваш каталог…</h1>
+        <div class="dkb__bignum" id="form-num">1.8 МБ</div>
+      </div>
+
+      <!-- ШАГ: готово + выбор способа -->
+      <div class="dkb__step" id="s-ready">
+        <div class="dkb__ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div class="dkb__pill">Каталог сформирован · <b id="ready-size" style="margin-left:2px">8.9 МБ</b></div>
+        <h1 class="dkb__title">Готово! Куда отправить каталог?</h1>
+        <p class="dkb__sub">Ваш каталог собран. Выберите, где вам удобно его получить.</p>
         <div class="dkb__btns">
           <button type="button" class="dkb__btn dkb__btn--dk" data-msgr="Telegram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 4.3L2.9 11.4c-.6.2-.6 1 0 1.2l4.6 1.5 1.8 5.5c.2.5.8.6 1.1.2l2.5-2.5 4.6 3.4c.4.3 1 .1 1.1-.4l3-14.8c.1-.6-.5-1.1-1.1-.9z"/></svg>
@@ -167,37 +192,25 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
             На телефон
           </button>
         </div>
-        <button type="button" class="dkb__back" data-back="s-dl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> Назад</button>
       </div>
 
-      <!-- ШАГ 3: обработка (перед формой) -->
-      <div class="dkb__step" id="s-proc">
-        <div class="dkb__spin"></div>
-        <h1 class="dkb__title" style="font-size:clamp(20px,5.5vw,26px)">Готовим ваш каталог…</h1>
-        <ul class="dkb__psteps" id="psteps">
-          <li data-i="0"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Собираем актуальные проекты</li>
-          <li data-i="1"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Добавляем цены под ключ</li>
-          <li data-i="2"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Формируем файл каталога</li>
-        </ul>
-      </div>
-
-      <!-- ШАГ 4: телефон -->
+      <!-- ШАГ: телефон -->
       <div class="dkb__step" id="s-phone">
         <div class="dkb__cap" id="phone-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/></svg><span id="phone-cap-txt">Введите ваш номер телефона</span></div>
-        <h1 class="dkb__title" style="font-size:clamp(20px,5.5vw,27px)">Каталог готов — куда отправить?</h1>
+        <h1 class="dkb__title" style="font-size:clamp(20px,5.5vw,27px)">Куда прислать каталог?</h1>
         <form class="dkb__btns" id="lead-form" autocomplete="on" style="gap:12px">
           <input class="dkb__field" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
           <button type="submit" class="dkb__btn dkb__btn--max">Получить каталог</button>
         </form>
         <div class="dkb__fine">Нажимая кнопку, вы соглашаетесь с <a href="https://kzndom.com/" target="_blank" rel="noopener">обработкой данных</a></div>
-        <button type="button" class="dkb__back" data-back="s-dest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> Другой способ</button>
+        <button type="button" class="dkb__back" data-back="s-ready"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> Другой способ</button>
       </div>
 
-      <!-- ШАГ 5: готово -->
+      <!-- ШАГ: готово -->
       <div class="dkb__step" id="s-done">
         <div class="dkb__ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <h1 class="dkb__title">Готово!</h1>
-        <p class="dkb__sub">Отправим каталог <b id="done-dest" style="color:#fff">на телефон</b> и свяжемся для подбора проекта. А пока — откройте каталог прямо сейчас.</p>
+        <h1 class="dkb__title">Отправляем!</h1>
+        <p class="dkb__sub">Пришлём каталог <b id="done-dest" style="color:#fff">на телефон</b> и свяжемся для подбора проекта. А пока — откройте каталог прямо сейчас.</p>
         <div class="dkb__btns">
           <a class="dkb__btn dkb__btn--max" href="https://kzndom.com/channels/" style="text-decoration:none">Открыть каталог проектов</a>
         </div>
@@ -212,79 +225,116 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 (function(){
   var CONFIG={ whatsapp:'79662505650', webhook:'https://kzndom-lead.kzndomcom.workers.dev', metrikaId:97508515, metrikaGoal:'lead' };
   var LEAD_SOURCE='Каталог (Яндекс Директ)';
-  var chosen='Телефон';
+  var BASE=1.8, chosen='Телефон';
 
-  var CAPS={ 'MAX':'Введите ваш номер в мессенджере MAX', 'Telegram':'Введите ваш номер в мессенджере Telegram', 'Телефон':'Введите ваш номер телефона' };
-  var DONE={ 'MAX':'в мессенджер MAX', 'Telegram':'в Telegram', 'Телефон':'на телефон' };
+  var QUIZ=[
+    { q:'Какие проекты вам ближе?', prog:18, msg:'Начинаем формировать каталог', label:'Стиль',
+      opts:[{t:'Хай-тек',mb:2.4},{t:'Классика',mb:2.3},{t:'Современные',mb:2.6},{t:'Барнхаус',mb:2.2}] },
+    { q:'Сколько этажей?', prog:44, msg:'Отлично! Каталог пополняется', label:'Этажность',
+      opts:[{t:'Одноэтажные',mb:2.1},{t:'Двухэтажные',mb:2.4},{t:'С мансардой',mb:2.3}] },
+    { q:'Какая площадь нужна?', prog:66, msg:'Почти всё — ещё один штрих', label:'Площадь',
+      opts:[{t:'до 100 м²',mb:2.0},{t:'100–150 м²',mb:2.3},{t:'150–200 м²',mb:2.5},{t:'200+ м²',mb:2.8}] }
+  ];
+  var answers=[]; // {t,mb}
+  function sizeUpTo(n){ var s=BASE; for(var i=0;i<n && i<answers.length;i++){ if(answers[i]) s+=answers[i].mb; } return s; }
+  function finalSize(){ return sizeUpTo(QUIZ.length); }
 
-  /* прогресс: процент + мотивирующая подпись на шаг */
-  var PROG={
-    's-dl':   null,
-    's-dest': {p:25, m:'Отличный старт! Осталось пару шагов'},
-    's-proc': {p:70, m:'Собираем каталог под вас…'},
-    's-phone':{p:90, m:'Последний шаг — и каталог ваш!'},
-    's-done': {p:100,m:'Готово! Каталог собран 🎉'}
-  };
+  /* прогресс */
   var progBox=document.getElementById('prog'), progFill=document.getElementById('prog-fill'),
       progPct=document.getElementById('prog-pct'), progMsg=document.getElementById('prog-msg');
   var curPct=0, pctTimer=null;
   function animatePct(to){
     if(pctTimer) clearInterval(pctTimer);
     var step=(to>curPct)?1:-1;
-    pctTimer=setInterval(function(){
-      if(curPct===to){ clearInterval(pctTimer); return; }
-      curPct+=step; progPct.textContent=curPct+'%';
-    }, 18);
+    pctTimer=setInterval(function(){ if(curPct===to){ clearInterval(pctTimer); return; } curPct+=step; progPct.textContent=curPct+'%'; }, 16);
   }
-  function setProg(id){
-    var cfg=PROG[id];
-    if(!cfg){ progBox.classList.remove('on'); return; }
-    progBox.classList.add('on');
-    progMsg.textContent=cfg.m;
-    progFill.style.width=cfg.p+'%';
-    animatePct(cfg.p);
+  function setProgVals(p,m){ progBox.classList.add('on'); if(m!=null) progMsg.textContent=m; progFill.style.width=p+'%'; animatePct(p); }
+
+  var PROG={ 's-form':{p:88,m:'Формируем ваш каталог…'}, 's-ready':{p:92,m:'Каталог готов — выберите способ'},
+             's-phone':{p:96,m:'Последний шаг — и каталог ваш!'}, 's-done':{p:100,m:'Готово! Каталог отправляется 🎉'} };
+
+  /* объём */
+  var sizeChip=document.getElementById('size-chip'), sizeVal=document.getElementById('size-val');
+  var curSize=BASE, sizeTimer=null;
+  function fmtMB(v){ return v.toFixed(1).replace('.',',')+' МБ'; }
+  function animateSize(to,onto){
+    if(sizeTimer) clearInterval(sizeTimer);
+    var dir=(to>curSize)?1:-1, stepv=Math.max(0.1, Math.abs(to-curSize)/12);
+    sizeTimer=setInterval(function(){
+      if(Math.abs(curSize-to)<0.06){ curSize=to; sizeVal.textContent=fmtMB(curSize); if(onto)onto.textContent=fmtMB(curSize); clearInterval(sizeTimer); return; }
+      curSize+=dir*stepv; if((dir>0&&curSize>to)||(dir<0&&curSize<to)) curSize=to;
+      sizeVal.textContent=fmtMB(curSize); if(onto)onto.textContent=fmtMB(curSize);
+    }, 40);
   }
 
-  var COVER_ON={'s-dl':1,'s-dest':1};
+  var COVER_ON={'s-intro':1}, SIZE_ON={'s-quiz':1,'s-form':1};
+  var SCREENS=['s-intro','s-quiz','s-form','s-ready','s-phone','s-done'];
   function show(id){
-    ['s-dl','s-dest','s-proc','s-phone','s-done'].forEach(function(s){
-      document.getElementById(s).classList.toggle('on', s===id);
-    });
+    SCREENS.forEach(function(s){ document.getElementById(s).classList.toggle('on', s===id); });
     document.getElementById('cover').classList.toggle('hide', !COVER_ON[id]);
-    setProg(id);
+    sizeChip.classList.toggle('on', !!SIZE_ON[id]);
+    if(id==='s-intro'){ progBox.classList.remove('on'); }
+    else if(id!=='s-quiz' && PROG[id]){ setProgVals(PROG[id].p, PROG[id].m); }
     try{ window.scrollTo(0,0); }catch(e){}
   }
 
-  /* шаг 1 → выбор способа */
-  document.getElementById('btn-dl').addEventListener('click', function(){ show('s-dest'); });
+  /* мини-квиз */
+  var quizIdx=0;
+  var qEl=document.getElementById('quiz-q'), optsEl=document.getElementById('quiz-opts'), backEl=document.getElementById('quiz-back');
+  function renderQuiz(idx){
+    quizIdx=idx; var s=QUIZ[idx];
+    qEl.textContent=s.q;
+    optsEl.className='dkb__opts '+(s.opts.length%2===0?'c2':'c1');
+    optsEl.innerHTML='';
+    s.opts.forEach(function(o){
+      var b=document.createElement('button'); b.type='button'; b.className='dkb__opt'; b.textContent=o.t;
+      if(answers[idx] && answers[idx].t===o.t) b.classList.add('sel');
+      b.addEventListener('click', function(){
+        answers[idx]={t:o.t,mb:o.mb,label:s.label};
+        animateSize(sizeUpTo(idx+1));
+        optsEl.querySelectorAll('.dkb__opt').forEach(function(x){x.classList.remove('sel');});
+        b.classList.add('sel');
+        setTimeout(function(){
+          if(idx+1<QUIZ.length) renderQuiz(idx+1);
+          else finishQuiz();
+        }, 260);
+      });
+      optsEl.appendChild(b);
+    });
+    backEl.style.visibility='visible';
+    setProgVals(s.prog, s.msg);
+    sizeChip.classList.add('on');
+    animateSize(sizeUpTo(idx));
+  }
+  backEl.addEventListener('click', function(){
+    if(quizIdx>0) renderQuiz(quizIdx-1);
+    else show('s-intro');
+  });
 
-  /* выбор способа → обработка → форма */
+  document.getElementById('btn-start').addEventListener('click', function(){ show('s-quiz'); renderQuiz(0); });
+
+  function finishQuiz(){
+    show('s-form');
+    setProgVals(PROG['s-form'].p, PROG['s-form'].m);
+    var fn=document.getElementById('form-num'); fn.textContent=fmtMB(curSize);
+    animateSize(finalSize(), fn);
+    setTimeout(function(){
+      document.getElementById('ready-size').textContent=fmtMB(finalSize());
+      show('s-ready');
+    }, 1500);
+  }
+
+  /* выбор способа → форма */
   document.querySelectorAll('[data-msgr]').forEach(function(btn){
     btn.addEventListener('click', function(){
       chosen=btn.dataset.msgr;
-      document.getElementById('phone-cap-txt').textContent=CAPS[chosen]||CAPS['Телефон'];
-      show('s-proc');
-      runProc(function(){ show('s-phone'); setTimeout(function(){ inp.focus(); }, 250); });
+      var caps={ 'MAX':'Введите ваш номер в мессенджере MAX', 'Telegram':'Введите ваш номер в мессенджере Telegram', 'Телефон':'Введите ваш номер телефона' };
+      document.getElementById('phone-cap-txt').textContent=caps[chosen]||caps['Телефон'];
+      show('s-phone');
+      setTimeout(function(){ inp.focus(); }, 250);
     });
   });
-
-  document.querySelectorAll('[data-back]').forEach(function(b){
-    b.addEventListener('click', function(){ show(b.dataset.back); });
-  });
-
-  /* обработка: спиннер + чек-лист + рост прогресса 25→70 */
-  function runProc(done){
-    var steps=document.querySelectorAll('#psteps li');
-    steps.forEach(function(li){ li.classList.remove('on'); });
-    steps.forEach(function(li,idx){
-      setTimeout(function(){
-        li.classList.add('on');
-        var p=25+Math.round(((idx+1)/steps.length)*45); // 25→70
-        progFill.style.width=p+'%'; animatePct(p);
-      }, 450+idx*650);
-    });
-    setTimeout(done, 450+steps.length*650+450);
-  }
+  document.querySelectorAll('[data-back]').forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.back); }); });
 
   /* телефон */
   var inp=document.querySelector('input[name=phone]');
@@ -324,9 +374,11 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
     e.preventDefault();
     if(!validPhone(inp.value)){ inp.classList.add('err'); inp.focus(); return; }
     inp.classList.remove('err');
+    var det=answers.map(function(a){ return a?(a.label+': '+a.t):''; }).filter(Boolean).join('; ');
+    var doneTxt={ 'MAX':'в мессенджер MAX', 'Telegram':'в Telegram', 'Телефон':'на телефон' };
     reachGoal();
-    deliver({source:LEAD_SOURCE, phone:inp.value, details:'Способ получения: '+chosen});
-    document.getElementById('done-dest').textContent=DONE[chosen]||DONE['Телефон'];
+    deliver({source:LEAD_SOURCE, phone:inp.value, details:'Способ: '+chosen+'; Каталог: '+fmtMB(finalSize())+'; '+det});
+    document.getElementById('done-dest').textContent=doneTxt[chosen]||doneTxt['Телефон'];
     show('s-done');
   });
 })();
