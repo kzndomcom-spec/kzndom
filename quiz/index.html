@@ -34,16 +34,17 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 .dkb__glow{position:absolute;top:42%;left:50%;width:min(950px,160vw);height:min(950px,160vw);
   transform:translate(-50%,-50%);background:radial-gradient(circle, rgba(167,139,250,.30) 0%, rgba(167,139,250,.12) 38%, transparent 70%);
   pointer-events:none;z-index:0;}
-.dkb__main{position:relative;z-index:1;width:100%;max-width:440px;text-align:center;
+.dkb__main{position:relative;z-index:1;width:100%;max-width:400px;text-align:center;
   display:flex;flex-direction:column;align-items:center;}
 
-.dkb__cover{width:100%;display:flex;justify-content:center;}
-.dkb__cover img{width:auto;max-width:260px;max-height:38vh;height:auto;display:block;
-  margin:0 auto clamp(16px,2.6vh,24px);border-radius:14px;box-shadow:0 16px 40px -16px rgba(167,139,250,.5);}
+.dkb__cover{width:100%;display:flex;justify-content:center;transition:opacity .3s ease, max-height .3s ease;}
+.dkb__cover.hide{display:none;}
+.dkb__cover img{width:auto;max-width:230px;max-height:34vh;height:auto;display:block;
+  margin:0 auto clamp(18px,3vh,28px);filter:drop-shadow(0 24px 44px rgba(0,0,0,.55)) drop-shadow(0 8px 22px rgba(167,139,250,.28));}
 
-.dkb__title{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(23px,6.5vw,33px);
-  line-height:1.08;letter-spacing:-.01em;margin:0 0 8px;color:#FFF;}
-.dkb__sub{color:#8A8A8A;font-size:clamp(14px,3.6vw,15px);line-height:1.5;margin:0 0 clamp(20px,3.6vh,28px);}
+.dkb__title{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(22px,6vw,31px);
+  line-height:1.1;letter-spacing:-.015em;margin:0 0 10px;color:#FFF;}
+.dkb__sub{color:#8A8A8A;font-size:clamp(13.5px,3.5vw,15px);line-height:1.55;margin:0 auto clamp(22px,3.8vh,30px);max-width:330px;}
 
 .dkb__btns{display:flex;flex-direction:column;gap:12px;width:100%;}
 .dkb__btn{position:relative;display:flex;align-items:center;justify-content:center;width:100%;
@@ -71,10 +72,9 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   font-family:'Inter';display:inline-flex;align-items:center;gap:6px;}
 .dkb__back:hover{color:#999;}
 .dkb__back svg{width:14px;height:14px;}
-.dkb__consent{font-size:11px;color:#555;margin-top:14px;line-height:1.5;}
-.dkb__consent a{color:#A78BFA;}
-.dkb__secure{display:flex;align-items:center;justify-content:center;gap:7px;color:#555;font-size:12px;margin-top:12px;}
-.dkb__secure svg{width:14px;height:14px;}
+.dkb__fine{font-size:11px;color:#4d4d4d;margin-top:14px;line-height:1.5;letter-spacing:.01em;}
+.dkb__fine a{color:#7a6ba8;text-decoration:none;}
+.dkb__fine a:hover{color:#A78BFA;}
 
 .dkb__foot{position:relative;z-index:1;margin-top:clamp(18px,3vh,28px);font-size:11px;
   letter-spacing:.04em;color:#555;text-align:center;}
@@ -113,7 +113,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   <div class="dkb__inner">
     <div class="dkb__main">
 
-      <div class="dkb__cover"><img src="/img/catalog.png" alt="Каталог проектов домов ДОМКОМ" loading="eager"></div>
+      <div class="dkb__cover" id="cover"><img src="/img/catalog.png" alt="Каталог проектов домов ДОМКОМ" loading="eager"></div>
 
       <!-- ШАГ 1: скачать -->
       <div class="dkb__step on" id="s-dl">
@@ -152,13 +152,12 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
       <div class="dkb__step" id="s-phone">
         <h1 class="dkb__title">Почти готово</h1>
         <div class="dkb__cap" id="phone-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/></svg><span id="phone-cap-txt">Введите ваш номер телефона</span></div>
-        <form class="dkb__btns" id="lead-form" autocomplete="on" style="gap:14px">
+        <form class="dkb__btns" id="lead-form" autocomplete="on" style="gap:12px">
           <input class="dkb__field" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
           <button type="submit" class="dkb__btn dkb__btn--max">Получить каталог</button>
-          <label class="dkb__consent" style="display:flex;gap:8px;text-align:left;align-items:flex-start"><input type="checkbox" id="agree" checked style="accent-color:#A78BFA;width:14px;height:14px;flex:none;margin-top:2px"> Соглашаюсь с обработкой персональных данных и <a href="https://kzndom.com/" target="_blank" rel="noopener">политикой конфиденциальности</a></label>
         </form>
-        <div class="dkb__secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Данные защищены. Не звоним без запроса.</div>
-        <button type="button" class="dkb__back" data-back="s-dest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> Выбрать другой способ</button>
+        <div class="dkb__fine">Нажимая кнопку, вы соглашаетесь с <a href="https://kzndom.com/" target="_blank" rel="noopener">обработкой данных</a></div>
+        <button type="button" class="dkb__back" data-back="s-dest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> Другой способ</button>
       </div>
 
       <!-- ШАГ 4: подготовка -->
@@ -201,10 +200,12 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   };
   var DONE={ 'MAX':'в мессенджер MAX', 'Telegram':'в Telegram', 'Телефон':'на телефон' };
 
+  var COVER_ON={'s-dl':1,'s-dest':1};
   function show(id){
     ['s-dl','s-dest','s-phone','s-prep','s-done'].forEach(function(s){
       document.getElementById(s).classList.toggle('on', s===id);
     });
+    document.getElementById('cover').classList.toggle('hide', !COVER_ON[id]);
     try{ window.scrollTo(0,0); }catch(e){}
   }
 
@@ -268,7 +269,6 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 
   document.getElementById('lead-form').addEventListener('submit', function(e){
     e.preventDefault();
-    if(!document.getElementById('agree').checked){ alert('Пожалуйста, подтвердите согласие на обработку данных.'); return; }
     if(!validPhone(inp.value)){ inp.classList.add('err'); inp.focus(); return; }
     inp.classList.remove('err');
     reachGoal();
