@@ -131,6 +131,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 .dkb__illu{position:relative;aspect-ratio:16/11;border-radius:16px;overflow:hidden;
   background:radial-gradient(120% 120% at 50% 12%, #1b1826 0%, #0f0f13 70%);border:1.5px solid #262433;
   display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
+.dkb__illu{cursor:pointer;}
 .dkb__slide.sel .dkb__illu{border-color:#A78BFA;box-shadow:0 0 0 3px rgba(167,139,250,.18);}
 .dkb__illu svg{width:82%;height:82%;overflow:visible;}
 .dkb__illu .grd{stroke:#3a3550;stroke-width:2;}
@@ -376,15 +377,19 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   document.getElementById('c-next').addEventListener('click', function(){ goC(cIdx+1); });
   document.getElementById('c-select').addEventListener('click', selectCurrent);
 
-  /* свайп */
-  var tsx=null,tsy=null;
-  viewport.addEventListener('touchstart', function(e){ tsx=e.touches[0].clientX; tsy=e.touches[0].clientY; }, {passive:true});
+  /* свайп + тап по плитке = выбор */
+  var isTouch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
+  var tsx=null,tsy=null,tMoved=false;
+  viewport.addEventListener('touchstart', function(e){ tsx=e.touches[0].clientX; tsy=e.touches[0].clientY; tMoved=false; }, {passive:true});
+  viewport.addEventListener('touchmove', function(e){ if(tsx===null) return; var dx=e.touches[0].clientX-tsx, dy=e.touches[0].clientY-tsy; if(Math.abs(dx)>10||Math.abs(dy)>10) tMoved=true; }, {passive:true});
   viewport.addEventListener('touchend', function(e){
     if(tsx===null) return;
     var dx=e.changedTouches[0].clientX-tsx, dy=e.changedTouches[0].clientY-tsy;
     if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)){ goC(cIdx+(dx<0?1:-1)); }
+    else if(!tMoved){ selectCurrent(); }
     tsx=null;
   }, {passive:true});
+  viewport.addEventListener('click', function(){ if(!isTouch) selectCurrent(); });
 
   backEl.addEventListener('click', function(){
     if(quizIdx>0) renderQuiz(quizIdx-1);
@@ -408,7 +413,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   document.querySelectorAll('[data-msgr]').forEach(function(btn){
     btn.addEventListener('click', function(){
       chosen=btn.dataset.msgr;
-      var caps={ 'MAX':'Введите ваш номер в мессенджере MAX', 'Telegram':'Введите ваш номер в мессенджере Telegram', 'Телефон':'Введите ваш номер телефона' };
+      var caps={ 'MAX':'Введите ваш номер мессенджера MAX', 'Telegram':'Введите ваш номер мессенджера Telegram', 'Телефон':'Введите ваш номер телефона' };
       document.getElementById('phone-title').textContent=caps[chosen]||caps['Телефон'];
       show('s-phone');
       setTimeout(function(){ inp.focus(); }, 250);
