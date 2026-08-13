@@ -190,7 +190,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   });
 
   function reachGoal(g){ try{ if(window.ym){ window.ym(CONFIG.metrikaId,'reachGoal',g); } }catch(e){} }
-  function deliver(pl){ try{ fetch(CONFIG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(pl)}).catch(function(){}); }catch(e){} }
+  function deliver(pl){ try{ fetch(CONFIG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(pl),keepalive:true}).catch(function(){}); }catch(e){} }
 
   document.getElementById('mx-form').addEventListener('submit', function(e){
     e.preventDefault();

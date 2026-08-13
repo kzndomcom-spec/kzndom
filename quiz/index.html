@@ -245,11 +245,8 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
       <!-- ШАГ: готово -->
       <div class="dkb__step" id="s-done">
         <div class="dkb__ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <h1 class="dkb__title">Отправляем!</h1>
-        <p class="dkb__sub">Пришлём каталог <b id="done-dest" style="color:#fff">на телефон</b> и свяжемся для подбора проекта. А пока — откройте каталог прямо сейчас.</p>
-        <div class="dkb__btns">
-          <a class="dkb__btn dkb__btn--max" href="https://kzndom.com/channels/" style="text-decoration:none">Открыть каталог проектов</a>
-        </div>
+        <h1 class="dkb__title">Готово!</h1>
+        <p class="dkb__sub">Пришлём каталог <b id="done-dest" style="color:#fff">на телефон</b> и свяжемся с вами в ближайшее время.</p>
       </div>
 
       <div class="dkb__foot">© ДОМКОМ · Строительство домов под ключ</div>
@@ -471,18 +468,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   /* отправка */
   function reachGoal(){ try{ if(CONFIG.metrikaId && window.ym){ window.ym(CONFIG.metrikaId,'reachGoal',CONFIG.metrikaGoal); } }catch(e){} }
   function deliver(p){
-    if(CONFIG.webhook){
-      try{
-        fetch(CONFIG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)})
-          .then(function(r){ if(!r||!r.ok){ waFallback(p); } }).catch(function(){ waFallback(p); });
-        return;
-      }catch(e){}
-    }
-    waFallback(p);
-  }
-  function waFallback(p){
-    var msg='Здравствуйте! Хочу получить каталог проектов.%0A'+encodeURIComponent(p.source)+'%0AМой контакт: '+encodeURIComponent(p.phone)+(p.details?'%0A'+encodeURIComponent(p.details):'');
-    window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+msg,'_blank');
+    try{ fetch(CONFIG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p),keepalive:true}).catch(function(){}); }catch(e){}
   }
 
   document.getElementById('lead-form').addEventListener('submit', function(e){
