@@ -87,11 +87,13 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 .dkb__opt:hover{border-color:#A78BFA;background:#1C1C1C;}
 .dkb__opt.sel{border-color:#A78BFA;background:rgba(167,139,250,.14);}
 
-.dkb__field{width:100%;background:#141414;border:1.5px solid #2A2A2A;border-radius:16px;color:#FFF;
-  font-size:18px;padding:16px 20px;text-align:center;transition:.16s;font-family:'Inter';}
-.dkb__field:focus{outline:none;border-color:#A78BFA;}
-.dkb__field.err{border-color:#E0555F;}
-.dkb__field::placeholder{color:#555;}
+.dkb__field{width:100%;background:#0E0E11;border:1.5px solid #2C2C33;border-radius:14px;color:#FFF;
+  font-size:17px;font-weight:500;letter-spacing:.02em;line-height:1.2;padding:16px 18px;text-align:left;
+  font-family:'Inter';-webkit-appearance:none;appearance:none;
+  transition:border-color .15s ease, background .15s ease, box-shadow .15s ease;}
+.dkb__field:focus{outline:none;border-color:#A78BFA;background:#141419;box-shadow:0 0 0 4px rgba(167,139,250,.14);}
+.dkb__field.err{border-color:#E0555F;box-shadow:0 0 0 4px rgba(224,85,95,.14);}
+.dkb__field::placeholder{color:#54545c;font-weight:400;letter-spacing:.01em;}
 .dkb__cap{display:inline-flex;align-items:center;gap:8px;color:#B89DFF;font-size:14px;font-weight:600;
   background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.22);border-radius:100px;padding:7px 15px;margin-bottom:16px;}
 .dkb__cap svg{width:16px;height:16px;}
@@ -490,6 +492,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
     var det=answers.map(function(a){ return a?(a.label+': '+a.t):''; }).filter(Boolean).join('; ');
     var doneTxt={ 'MAX':'в мессенджер MAX', 'Telegram':'в Telegram', 'Телефон':'на телефон' };
     reachGoal();
+    try{ if(window.ym){ window.ym(97508515,'reachGoal','quiz_lead'); } }catch(e){}
     deliver({source:LEAD_SOURCE, phone:inp.value, details:'Способ: '+chosen+'; Каталог: '+fmtMB(finalSize())+'; '+det});
     document.getElementById('done-dest').textContent=doneTxt[chosen]||doneTxt['Телефон'];
     show('s-done');
