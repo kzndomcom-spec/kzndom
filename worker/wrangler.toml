@@ -1,0 +1,4 @@
+name = "kzndom-lead"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+account_id = "d348760e2d7267ff5aa9bd4ebec03066"
