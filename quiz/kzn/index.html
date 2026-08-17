@@ -256,8 +256,8 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 
 <script>
 (function(){
-  var CONFIG={ whatsapp:'79662505650', webhook:'https://kzndom-lead.kzndomcom.workers.dev', metrikaId:97508515, metrikaGoal:'lead' };
-  var LEAD_SOURCE='Каталог (Яндекс Директ)';
+  var CONFIG={ whatsapp:'79662505650', webhook:'https://kzndom-lead.kzndomcom.workers.dev', metrikaId:97508515, metrikaGoal:'lead_kzn' };
+  var LEAD_SOURCE='Каталог (Яндекс Директ) — Казань';
   var BASE=1.8, chosen='Telegram';
 
   var QUIZ=[
@@ -478,8 +478,8 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
     var det=answers.map(function(a){ return a?(a.label+': '+a.t):''; }).filter(Boolean).join('; ');
     var doneTxt={ 'MAX':'в мессенджер MAX', 'Telegram':'в Telegram', 'Телефон':'на телефон' };
     reachGoal();
-    try{ if(window.ym){ window.ym(97508515,'reachGoal','quiz_lead'); } }catch(e){}
-    deliver({source:LEAD_SOURCE, city:'Челны', phone:inp.value, details:'Способ: '+chosen+'; Каталог: '+fmtMB(finalSize())+'; '+det});
+    try{ if(window.ym){ window.ym(97508515,'reachGoal','quiz_lead_kzn'); } }catch(e){}
+    deliver({source:LEAD_SOURCE, city:'Казань', phone:inp.value, details:'Способ: '+chosen+'; Каталог: '+fmtMB(finalSize())+'; '+det});
     document.getElementById('done-dest').textContent=doneTxt[chosen]||doneTxt['Телефон'];
     show('s-done');
   });
