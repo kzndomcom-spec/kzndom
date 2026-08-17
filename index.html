@@ -829,7 +829,7 @@
       return false;
     }
     inp.setCustomValidity(''); inp.classList.remove('err');
-    reachGoal(); deliver({source:form.dataset.lead||'Заявка', phone:v, details:details||''}); return true;
+    reachGoal(); deliver({source:form.dataset.lead||'Заявка', city:'Челны', phone:v, details:details||''}); return true;
   }
   root.querySelectorAll('form[data-lead]').forEach(function(form){
     if(form.id==='calc-form') return;
