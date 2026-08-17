@@ -42,3 +42,5 @@ export default {
     } catch (e) { return reply(502, { ok: false, error: String(e) }); }
   }
 };
+
+// deploy-check 2026-08-17T16:43Z
