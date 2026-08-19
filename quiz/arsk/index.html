@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Каталог проектов домов под ключ — Домком</title>
+<meta name="description" content="Соберите каталог готовых проектов домов под ключ под ваш вкус и получите удобным способом. Татарстан, Марий-Эл, Чувашия.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+   ym(97508515, 'init', {webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/97508515" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<style>
+html,body{margin:0;padding:0;background:#0A0A0A;}
+.dkb{position:fixed;inset:0;z-index:1;background:#0A0A0A;color:#FFF;
+  font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;
+  display:flex;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.dkb *{box-sizing:border-box;}
+.dkb__inner{position:relative;width:100%;min-height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:clamp(24px,5vh,52px) 20px;}
+.dkb__glow{position:absolute;top:42%;left:50%;width:min(950px,160vw);height:min(950px,160vw);
+  transform:translate(-50%,-50%);background:radial-gradient(circle, rgba(167,139,250,.30) 0%, rgba(167,139,250,.12) 38%, transparent 70%);
+  pointer-events:none;z-index:0;}
+.dkb__main{position:relative;z-index:1;width:100%;max-width:400px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;}
+
+/* прогресс-бар */
+.dkb__prog{width:100%;margin-bottom:12px;display:none;}
+.dkb__prog.on{display:block;animation:dkbFade .4s ease;}
+.dkb__prog-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;gap:12px;}
+.dkb__prog-msg{font-size:13px;font-weight:600;color:#C9BCF2;text-align:left;line-height:1.3;}
+.dkb__prog-pct{font-family:'Unbounded',sans-serif;font-weight:700;font-size:15px;color:#B89DFF;flex:none;}
+.dkb__prog-track{height:9px;border-radius:100px;background:#1A1A1D;overflow:hidden;position:relative;box-shadow:inset 0 1px 2px rgba(0,0,0,.5);}
+.dkb__prog-fill{height:100%;width:0;border-radius:100px;position:relative;overflow:hidden;
+  background:linear-gradient(90deg,#8E6EF0,#B89DFF);transition:width .6s cubic-bezier(.22,.61,.36,1);box-shadow:0 0 14px rgba(167,139,250,.55);}
+.dkb__prog-fill::after{content:"";position:absolute;inset:0;border-radius:100px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:translateX(-100%);animation:dkbShine 1.8s ease-in-out infinite;}
+@keyframes dkbShine{0%{transform:translateX(-100%)}60%,100%{transform:translateX(220%)}}
+
+/* чип «формируется X МБ» */
+.dkb__size{display:none;align-items:center;justify-content:center;gap:8px;margin-bottom:clamp(16px,2.6vh,22px);
+  font-size:13px;color:#9a9a9a;font-weight:500;}
+.dkb__size.on{display:inline-flex;animation:dkbFade .4s ease;}
+.dkb__size .dot{width:8px;height:8px;border-radius:50%;background:#5FBF86;box-shadow:0 0 8px rgba(95,191,134,.7);animation:dkbPulse 1s ease-in-out infinite;}
+@keyframes dkbPulse{0%,100%{opacity:1}50%{opacity:.35}}
+.dkb__size b{font-family:'Unbounded',sans-serif;font-weight:700;color:#fff;font-size:14px;}
+
+.dkb__cover{width:100%;display:flex;justify-content:center;transition:opacity .3s ease;}
+.dkb__cover.hide{display:none;}
+.dkb__cover img{width:auto;max-width:230px;max-height:34vh;height:auto;display:block;
+  margin:0 auto clamp(18px,3vh,28px);filter:drop-shadow(0 24px 44px rgba(0,0,0,.55)) drop-shadow(0 8px 22px rgba(167,139,250,.28));}
+
+.dkb__title{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(21px,5.6vw,29px);
+  line-height:1.12;letter-spacing:-.015em;margin:0 0 10px;color:#FFF;}
+.dkb__sub{color:#8A8A8A;font-size:clamp(13.5px,3.5vw,15px);line-height:1.55;margin:0 auto clamp(20px,3.4vh,28px);max-width:330px;}
+
+.dkb__btns{display:flex;flex-direction:column;gap:12px;width:100%;}
+.dkb__btn{position:relative;display:flex;align-items:center;justify-content:center;width:100%;
+  padding:clamp(15px,2.2vh,18px) 22px;border-radius:16px;font-family:'Unbounded',sans-serif;font-weight:700;
+  font-size:clamp(15px,4vw,16px);letter-spacing:.01em;text-decoration:none;cursor:pointer;
+  border:1.5px solid transparent;transition:transform .18s ease, background .2s ease, border-color .2s ease;color:#FFF;}
+.dkb__btn svg{position:absolute;left:24px;top:50%;transform:translateY(-50%);width:21px;height:21px;}
+.dkb__btn:active{transform:scale(.975);}
+.dkb__btn--max{background:#A78BFA;color:#0A0A0A;}
+.dkb__btn--max:hover{background:#B89DFF;}
+.dkb__btn--dk{background:#141414;color:#FFF;border-color:#2A2A2A;}
+.dkb__btn--dk:hover{border-color:#A78BFA;background:#1C1C1C;}
+
+/* опции квиза */
+.dkb__opts{display:grid;gap:10px;width:100%;}
+.dkb__opts.c2{grid-template-columns:1fr 1fr;}
+.dkb__opts.c1{grid-template-columns:1fr;}
+.dkb__opt{padding:16px 14px;border-radius:14px;background:#141414;border:1.5px solid #2A2A2A;color:#FFF;
+  font-family:'Unbounded',sans-serif;font-weight:600;font-size:15px;cursor:pointer;transition:.16s;
+  display:flex;align-items:center;justify-content:center;text-align:center;min-height:56px;}
+.dkb__opt:hover{border-color:#A78BFA;background:#1C1C1C;}
+.dkb__opt.sel{border-color:#A78BFA;background:rgba(167,139,250,.14);}
+
+.dkb__field{width:100%;background:#0E0E11;border:1.5px solid #2C2C33;border-radius:14px;color:#FFF;
+  font-size:17px;font-weight:500;letter-spacing:.02em;line-height:1.2;padding:16px 18px;text-align:left;
+  font-family:'Inter';-webkit-appearance:none;appearance:none;
+  transition:border-color .15s ease, background .15s ease, box-shadow .15s ease;}
+.dkb__field:focus{outline:none;border-color:#A78BFA;background:#141419;box-shadow:0 0 0 4px rgba(167,139,250,.14);}
+.dkb__field.err{border-color:#E0555F;box-shadow:0 0 0 4px rgba(224,85,95,.14);}
+.dkb__field::placeholder{color:#54545c;font-weight:400;letter-spacing:.01em;}
+.dkb__cap{display:inline-flex;align-items:center;gap:8px;color:#B89DFF;font-size:14px;font-weight:600;
+  background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.22);border-radius:100px;padding:7px 15px;margin-bottom:16px;}
+.dkb__cap svg{width:16px;height:16px;}
+
+.dkb__back{margin-top:16px;color:#666;font-size:13px;cursor:pointer;background:none;border:none;
+  font-family:'Inter';display:inline-flex;align-items:center;gap:6px;}
+.dkb__back:hover{color:#999;}
+.dkb__back svg{width:14px;height:14px;}
+.dkb__fine{font-size:11px;color:#4d4d4d;margin-top:14px;line-height:1.5;letter-spacing:.01em;}
+.dkb__fine a{color:#7a6ba8;text-decoration:none;}
+.dkb__fine a:hover{color:#A78BFA;}
+
+.dkb__step{display:none;width:100%;flex-direction:column;align-items:center;}
+.dkb__step.on{display:flex;animation:dkbRise .4s ease;}
+@keyframes dkbRise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+@keyframes dkbFade{from{opacity:0}to{opacity:1}}
+
+/* формирование */
+.dkb__spin{width:56px;height:56px;margin:6px auto 18px;border-radius:50%;
+  border:4px solid rgba(167,139,250,.18);border-top-color:#A78BFA;animation:dkbSpin .8s linear infinite;}
+@keyframes dkbSpin{to{transform:rotate(360deg)}}
+.dkb__bignum{font-family:'Unbounded',sans-serif;font-weight:800;font-size:34px;color:#B89DFF;margin-top:6px;letter-spacing:-.02em;}
+
+.dkb__ok{width:60px;height:60px;margin:4px auto 16px;border-radius:50%;background:rgba(95,191,134,.14);
+  border:1px solid rgba(95,191,134,.4);display:flex;align-items:center;justify-content:center;color:#5FBF86;}
+.dkb__ok svg{width:30px;height:30px;}
+.dkb__pill{display:inline-flex;align-items:center;gap:7px;background:rgba(95,191,134,.12);border:1px solid rgba(95,191,134,.35);
+  border-radius:100px;padding:6px 14px;font-size:13px;font-weight:600;color:#5FBF86;margin-bottom:16px;}
+
+.dkb__foot{position:relative;z-index:1;margin-top:clamp(18px,3vh,28px);font-size:11px;letter-spacing:.04em;color:#555;text-align:center;}
+
+/* карусель вариантов */
+.dkb__carousel{position:relative;width:100%;margin-bottom:14px;}
+.dkb__cviewport{width:100%;overflow:hidden;border-radius:18px;}
+.dkb__ctrack{display:flex;transition:transform .38s cubic-bezier(.22,.61,.36,1);}
+.dkb__slide{min-width:100%;padding:2px;}
+.dkb__illu{position:relative;aspect-ratio:16/11;border-radius:16px;overflow:hidden;
+  background:radial-gradient(120% 120% at 50% 12%, #1b1826 0%, #0f0f13 70%);border:1.5px solid #262433;
+  display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
+.dkb__illu{cursor:pointer;}
+.dkb__slide.sel .dkb__illu{border-color:#A78BFA;box-shadow:0 0 0 3px rgba(167,139,250,.18);}
+.dkb__illu svg{width:82%;height:82%;overflow:visible;}
+.dkb__illu .grd{stroke:#3a3550;stroke-width:2;}
+.dkb__illu .win{fill:#B89DFF;stroke:none;}
+.dkb__slide.act .dkb__isvg{animation:dkbFloat 3.4s ease-in-out infinite;}
+.dkb__slide.act .win{animation:dkbWin 2.2s ease-in-out infinite;}
+@keyframes dkbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes dkbWin{0%,100%{opacity:.95}50%{opacity:.45}}
+.dkb__slabel{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(16px,4.4vw,19px);
+  margin-top:14px;color:#FFF;text-align:center;}
+.dkb__cbtn{position:absolute;top:calc(50% - 20px);transform:translateY(-50%);width:40px;height:40px;border-radius:50%;
+  background:rgba(12,12,14,.72);backdrop-filter:blur(8px);border:1.5px solid #2A2A2A;color:#fff;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;transition:.16s;}
+.dkb__cbtn:hover{border-color:#A78BFA;background:rgba(20,20,22,.9);}
+.dkb__cbtn svg{width:20px;height:20px;}
+.dkb__cbtn--prev{left:-6px;} .dkb__cbtn--next{right:-6px;}
+.dkb__dots{display:flex;gap:7px;justify-content:center;margin-bottom:16px;}
+.dkb__dots button{width:8px;height:8px;border-radius:100px;background:#2E2E36;border:none;cursor:pointer;padding:0;transition:.2s;}
+.dkb__dots button.on{width:22px;background:#A78BFA;}
+
+@media (prefers-reduced-motion:reduce){.dkb__step.on,.dkb__prog.on,.dkb__size.on{animation:none;} .dkb__spin,.dkb__size .dot,.dkb__slide.act .dkb__isvg,.dkb__slide.act .win{animation:none;} .dkb__prog-fill::after{display:none;}}
+</style>
+</head>
+<body>
+<div class="dkb">
+  <div class="dkb__glow"></div>
+  <div class="dkb__inner">
+    <div class="dkb__main">
+
+      <!-- прогресс-бар -->
+      <div class="dkb__prog" id="prog">
+        <div class="dkb__prog-top">
+          <span class="dkb__prog-msg" id="prog-msg">Начнём!</span>
+          <span class="dkb__prog-pct" id="prog-pct">0%</span>
+        </div>
+        <div class="dkb__prog-track"><div class="dkb__prog-fill" id="prog-fill"></div></div>
+      </div>
+
+      <!-- чип объёма каталога -->
+      <div class="dkb__size" id="size-chip"><span class="dot"></span> Каталог формируется: <b id="size-val">1.8 МБ</b></div>
+
+      <div class="dkb__cover" id="cover"><img src="/img/catalog.webp" alt="Каталог проектов домов ДОМКОМ" loading="eager"></div>
+
+      <!-- ШАГ: старт -->
+      <div class="dkb__step on" id="s-intro">
+        <h1 class="dkb__title">Каталог проектов домов под ключ</h1>
+        <p class="dkb__sub">Соберём каталог под ваш вкус за 3 шага — с планировками, фото и ценами.</p>
+        <div class="dkb__btns">
+          <button type="button" class="dkb__btn dkb__btn--max" id="btn-start">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+            Сформировать и скачать
+          </button>
+        </div>
+      </div>
+
+      <!-- ШАГ: мини-квиз (карусель, рендерится JS) -->
+      <div class="dkb__step" id="s-quiz">
+        <h1 class="dkb__title" id="quiz-q" style="font-size:clamp(20px,5.4vw,27px);margin-bottom:16px">Вопрос</h1>
+        <div class="dkb__carousel">
+          <button type="button" class="dkb__cbtn dkb__cbtn--prev" id="c-prev" aria-label="Предыдущий"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="dkb__cviewport" id="c-viewport"><div class="dkb__ctrack" id="c-track"></div></div>
+          <button type="button" class="dkb__cbtn dkb__cbtn--next" id="c-next" aria-label="Следующий"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="dkb__dots" id="c-dots"></div>
+        <div class="dkb__btns"><button type="button" class="dkb__btn dkb__btn--max" id="c-select">Выбрать этот вариант</button></div>
+        <button type="button" class="dkb__back" id="quiz-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> Назад</button>
+      </div>
+
+      <!-- ШАГ: формирование -->
+      <div class="dkb__step" id="s-form">
+        <div class="dkb__spin"></div>
+        <h1 class="dkb__title" id="form-title" style="font-size:clamp(20px,5.5vw,26px)">Формируем ваш каталог…</h1>
+        <div class="dkb__bignum" id="form-num">1.8 МБ</div>
+      </div>
+
+      <!-- ШАГ: готово + выбор способа -->
+      <div class="dkb__step" id="s-ready">
+        <div class="dkb__ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div class="dkb__pill">Каталог готов · <b id="ready-size" style="margin-left:2px">8.9 МБ</b></div>
+        <h1 class="dkb__title">Куда отправить каталог?</h1>
+        <div class="dkb__btns">
+          <button type="button" class="dkb__btn dkb__btn--dk" data-msgr="Telegram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 4.3L2.9 11.4c-.6.2-.6 1 0 1.2l4.6 1.5 1.8 5.5c.2.5.8.6 1.1.2l2.5-2.5 4.6 3.4c.4.3 1 .1 1.1-.4l3-14.8c.1-.6-.5-1.1-1.1-.9z"/></svg>
+            В Telegram
+          </button>
+          <button type="button" class="dkb__btn dkb__btn--max" data-msgr="MAX">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.4 8.7 8.7 0 0 1-3.8-.9L3 21l1.9-5.4a8.38 8.38 0 0 1-.9-3.6A8.38 8.38 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"/></svg>
+            В мессенджер MAX
+          </button>
+        </div>
+      </div>
+
+      <!-- ШАГ: короткий кружок перед формой -->
+      <div class="dkb__step" id="s-connect">
+        <div class="dkb__spin"></div>
+        <h1 class="dkb__title" id="connect-title" style="font-size:clamp(20px,5.5vw,26px)">Отправка…</h1>
+      </div>
+
+      <!-- ШАГ: телефон -->
+      <div class="dkb__step" id="s-phone">
+        <h1 class="dkb__title" id="phone-title" style="font-size:clamp(20px,5.5vw,27px)">Введите ваш номер телефона</h1>
+        <form class="dkb__btns" id="lead-form" autocomplete="on" style="gap:12px">
+          <input class="dkb__field" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+          <button type="submit" class="dkb__btn dkb__btn--max">Получить каталог</button>
+        </form>
+        <button type="button" class="dkb__back" data-back="s-ready"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> Другой способ</button>
+      </div>
+
+      <!-- ШАГ: готово -->
+      <div class="dkb__step" id="s-done">
+        <div class="dkb__ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h1 class="dkb__title">Готово!</h1>
+        <p class="dkb__sub">Пришлём каталог <b id="done-dest" style="color:#fff">на телефон</b> и свяжемся с вами в ближайшее время.</p>
+      </div>
+
+      <div class="dkb__foot">© ДОМКОМ · Строительство домов под ключ</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var CONFIG={ whatsapp:'79662505650', webhook:'https://kzndom-lead.kzndomcom.workers.dev', metrikaId:97508515, metrikaGoal:'lead_arsk' };
+  var LEAD_SOURCE='Каталог (Яндекс Директ)';
+  var BASE=1.8, chosen='Telegram';
+
+  var QUIZ=[
+    { q:'Какие проекты вам ближе?', prog:18, msg:'Начинаем формировать каталог', label:'Стиль',
+      opts:[{t:'Хай-тек',mb:0.7,i:'hitech'},{t:'Классика',mb:0.6,i:'classic'},{t:'Современные',mb:0.8,i:'modern'},{t:'Барнхаус',mb:0.6,i:'barn'}] },
+    { q:'Сколько этажей?', prog:44, msg:'Отлично! Каталог пополняется', label:'Этажность',
+      opts:[{t:'Одноэтажные',mb:0.5,i:'floor1'},{t:'Двухэтажные',mb:0.7,i:'floor2'},{t:'С мансардой',mb:0.6,i:'mansard'}] },
+    { q:'Какая площадь нужна?', prog:66, msg:'Почти всё — ещё один штрих', label:'Площадь',
+      opts:[{t:'до 100 м²',mb:0.4,i:'areaS'},{t:'100–150 м²',mb:0.6,i:'areaM'},{t:'150–200 м²',mb:0.7,i:'areaL'},{t:'200+ м²',mb:0.9,i:'areaXL'}] }
+  ];
+
+  /* графические иллюстрации вариантов (viewBox 0 0 240 160) */
+  function svg(inner){ return '<svg class="dkb__isvg" viewBox="0 0 240 160" fill="none" stroke="#C9BCF2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">'+inner+'</svg>'; }
+  var G='<path class="grd" d="M24 134 H216"/>';
+  var ILLU={
+    hitech: svg(G+'<path d="M62 96 H176 V132 H62 Z"/><path d="M46 68 H150 V96 H46 Z"/><path d="M150 82 H190"/><path d="M100 68 V96"/><path d="M66 74 H134"/><rect class="win" x="76" y="104" width="30" height="20" rx="2"/><rect class="win" x="120" y="104" width="30" height="20" rx="2"/><rect class="win" x="60" y="74" width="30" height="16" rx="2"/>'),
+    classic: svg(G+'<path d="M78 92 H162 V132 H78 Z"/><path d="M66 92 L120 54 L174 92"/><path d="M150 66 V50 H160 V74"/><rect class="win" x="90" y="102" width="18" height="18" rx="2"/><rect class="win" x="132" y="102" width="18" height="18" rx="2"/><path d="M112 118 H128 V132 H112 Z"/>'),
+    modern: svg(G+'<path d="M58 92 H148 V132 H58 Z"/><path d="M148 74 H190 V132 H148 Z"/><path d="M58 92 L96 72 L148 74"/><rect class="win" x="72" y="102" width="34" height="24" rx="2"/><rect class="win" x="160" y="86" width="18" height="30" rx="2"/>'),
+    barn: svg(G+'<path d="M80 132 V78 L120 44 L160 78 V132 Z"/><path d="M98 132 V94"/><path d="M120 132 V86"/><path d="M142 132 V94"/><rect class="win" x="108" y="66" width="24" height="34" rx="2"/>'),
+    floor1: svg(G+'<path d="M52 98 H188 V132 H52 Z"/><path d="M40 98 L120 64 L200 98"/><rect class="win" x="70" y="106" width="22" height="18" rx="2"/><rect class="win" x="148" y="106" width="22" height="18" rx="2"/><path d="M112 110 H128 V132 H112 Z"/>'),
+    floor2: svg(G+'<path d="M74 70 H166 V132 H74 Z"/><path d="M62 70 L120 42 L178 70"/><rect class="win" x="86" y="80" width="18" height="16" rx="2"/><rect class="win" x="136" y="80" width="18" height="16" rx="2"/><rect class="win" x="86" y="104" width="18" height="16" rx="2"/><rect class="win" x="136" y="104" width="18" height="16" rx="2"/><path d="M111 114 H129 V132 H111 Z"/>'),
+    mansard: svg(G+'<path d="M74 96 H166 V132 H74 Z"/><path d="M62 96 L86 60 H154 L178 96"/><path d="M110 60 L120 48 L130 60"/><rect class="win" x="112" y="66" width="16" height="14" rx="2"/><rect class="win" x="88" y="104" width="20" height="18" rx="2"/><rect class="win" x="132" y="104" width="20" height="18" rx="2"/>'),
+    areaS: svg('<path d="M78 54 H162 V128 H78 Z"/><path d="M120 54 V128"/><path d="M78 94 H120"/><rect class="win" x="126" y="60" width="30" height="28" rx="2"/>'),
+    areaM: svg('<path d="M64 50 H176 V130 H64 Z"/><path d="M120 50 V130"/><path d="M64 90 H120"/><path d="M120 88 H176"/><rect class="win" x="126" y="94" width="44" height="30" rx="2"/>'),
+    areaL: svg('<path d="M56 48 H184 V132 H56 Z"/><path d="M120 48 V132"/><path d="M56 88 H120"/><path d="M120 86 H184"/><path d="M150 86 V132"/><rect class="win" x="62" y="94" width="52" height="32" rx="2"/>'),
+    areaXL: svg('<path d="M48 44 H192 V134 H48 Z"/><path d="M120 44 V134"/><path d="M48 86 H120"/><path d="M120 82 H192"/><path d="M84 86 V134"/><path d="M156 82 V134"/><rect class="win" x="126" y="88" width="28" height="44" rx="2"/>')
+  };
+  var answers=[]; // {t,mb}
+  function sizeUpTo(n){ var s=BASE; for(var i=0;i<n && i<answers.length;i++){ if(answers[i]) s+=answers[i].mb; } return s; }
+  var BULK=15.5; // основной объём каталога добавляется на экране формирования
+  function finalSize(){ return sizeUpTo(QUIZ.length)+BULK; }
+
+  /* прогресс */
+  var progBox=document.getElementById('prog'), progFill=document.getElementById('prog-fill'),
+      progPct=document.getElementById('prog-pct'), progMsg=document.getElementById('prog-msg');
+  var curPct=0, pctTimer=null;
+  function animatePct(to){
+    if(pctTimer) clearInterval(pctTimer);
+    var step=(to>curPct)?1:-1;
+    pctTimer=setInterval(function(){ if(curPct===to){ clearInterval(pctTimer); return; } curPct+=step; progPct.textContent=curPct+'%'; }, 16);
+  }
+  function setProgVals(p,m){ progBox.classList.add('on'); if(m!=null) progMsg.textContent=m; progFill.style.width=p+'%'; animatePct(p); }
+
+  var PROG={ 's-form':{p:88,m:'Формируем ваш каталог…'}, 's-ready':{p:92,m:'Каталог готов — выберите способ'},
+             's-connect':{p:94,m:'Секунду…'}, 's-phone':{p:96,m:'Последний шаг — и каталог ваш!'}, 's-done':{p:100,m:'Готово! Каталог отправляется 🎉'} };
+
+  /* объём */
+  var sizeChip=document.getElementById('size-chip'), sizeVal=document.getElementById('size-val');
+  var curSize=BASE, sizeTimer=null;
+  function fmtMB(v){ return v.toFixed(1).replace('.',',')+' МБ'; }
+  function animateSize(to,onto){
+    if(sizeTimer) clearInterval(sizeTimer);
+    var dir=(to>curSize)?1:-1, stepv=Math.max(0.1, Math.abs(to-curSize)/12);
+    sizeTimer=setInterval(function(){
+      if(Math.abs(curSize-to)<0.06){ curSize=to; sizeVal.textContent=fmtMB(curSize); if(onto)onto.textContent=fmtMB(curSize); clearInterval(sizeTimer); return; }
+      curSize+=dir*stepv; if((dir>0&&curSize>to)||(dir<0&&curSize<to)) curSize=to;
+      sizeVal.textContent=fmtMB(curSize); if(onto)onto.textContent=fmtMB(curSize);
+    }, 40);
+  }
+
+  var COVER_ON={'s-intro':1}, SIZE_ON={'s-quiz':1,'s-form':1};
+  var SCREENS=['s-intro','s-quiz','s-form','s-ready','s-connect','s-phone','s-done'];
+  function show(id){
+    SCREENS.forEach(function(s){ document.getElementById(s).classList.toggle('on', s===id); });
+    document.getElementById('cover').classList.toggle('hide', !COVER_ON[id]);
+    sizeChip.classList.toggle('on', !!SIZE_ON[id]);
+    if(id==='s-intro'){ progBox.classList.remove('on'); }
+    else if(id!=='s-quiz' && id!=='s-form' && PROG[id]){ setProgVals(PROG[id].p, PROG[id].m); }
+    try{ window.scrollTo(0,0); }catch(e){}
+  }
+
+  /* мини-квиз — карусель */
+  var quizIdx=0, cIdx=0;
+  var qEl=document.getElementById('quiz-q'), track=document.getElementById('c-track'),
+      dotsEl=document.getElementById('c-dots'), backEl=document.getElementById('quiz-back'),
+      viewport=document.getElementById('c-viewport');
+  function paintDots(n){
+    dotsEl.innerHTML='';
+    for(var k=0;k<n;k++){ (function(k){ var d=document.createElement('button'); d.type='button';
+      if(k===cIdx) d.className='on'; d.addEventListener('click', function(){ goC(k); }); dotsEl.appendChild(d); })(k); }
+  }
+  function goC(i,instant){
+    var n=QUIZ[quizIdx].opts.length;
+    cIdx=(i+n)%n;
+    if(instant) track.style.transition='none';
+    track.style.transform='translateX('+(-cIdx*100)+'%)';
+    if(instant){ void track.offsetWidth; track.style.transition=''; }
+    [].forEach.call(track.children,function(sl,si){ sl.classList.toggle('act', si===cIdx); });
+    [].forEach.call(dotsEl.children,function(d,di){ d.className=(di===cIdx)?'on':''; });
+  }
+  function renderQuiz(idx){
+    quizIdx=idx; var s=QUIZ[idx];
+    qEl.textContent=s.q;
+    cIdx=0;
+    if(answers[idx]){ for(var j=0;j<s.opts.length;j++){ if(s.opts[j].t===answers[idx].t){ cIdx=j; break; } } }
+    track.innerHTML=s.opts.map(function(o){
+      return '<div class="dkb__slide"><div class="dkb__illu">'+(ILLU[o.i]||'')+'</div><div class="dkb__slabel">'+o.t+'</div></div>';
+    }).join('');
+    paintDots(s.opts.length);
+    goC(cIdx,true);
+    var car=document.querySelector('.dkb__carousel'); if(car){ car.style.animation='none'; void car.offsetWidth; car.style.animation='dkbFade .32s ease'; }
+    setProgVals(s.prog, s.msg);
+    sizeChip.classList.add('on');
+    animateSize(sizeUpTo(idx));
+  }
+  function selectCurrent(){
+    var s=QUIZ[quizIdx], o=s.opts[cIdx];
+    answers[quizIdx]={t:o.t,mb:o.mb,label:s.label};
+    animateSize(sizeUpTo(quizIdx+1));
+    var sl=track.children[cIdx]; if(sl) sl.classList.add('sel');
+    setTimeout(function(){
+      if(quizIdx+1<QUIZ.length) renderQuiz(quizIdx+1);
+      else finishQuiz();
+    }, 300);
+  }
+  document.getElementById('c-prev').addEventListener('click', function(){ goC(cIdx-1); });
+  document.getElementById('c-next').addEventListener('click', function(){ goC(cIdx+1); });
+  document.getElementById('c-select').addEventListener('click', selectCurrent);
+
+  /* свайп + тап по плитке = выбор */
+  var isTouch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
+  var tsx=null,tsy=null,tMoved=false;
+  viewport.addEventListener('touchstart', function(e){ tsx=e.touches[0].clientX; tsy=e.touches[0].clientY; tMoved=false; }, {passive:true});
+  viewport.addEventListener('touchmove', function(e){ if(tsx===null) return; var dx=e.touches[0].clientX-tsx, dy=e.touches[0].clientY-tsy; if(Math.abs(dx)>10||Math.abs(dy)>10) tMoved=true; }, {passive:true});
+  viewport.addEventListener('touchend', function(e){
+    if(tsx===null) return;
+    var dx=e.changedTouches[0].clientX-tsx, dy=e.changedTouches[0].clientY-tsy;
+    if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)){ goC(cIdx+(dx<0?1:-1)); }
+    else if(!tMoved){ selectCurrent(); }
+    tsx=null;
+  }, {passive:true});
+  viewport.addEventListener('click', function(){ if(!isTouch) selectCurrent(); });
+
+  backEl.addEventListener('click', function(){
+    if(quizIdx>0) renderQuiz(quizIdx-1);
+    else show('s-intro');
+  });
+
+  document.getElementById('btn-start').addEventListener('click', function(){ show('s-quiz'); renderQuiz(0); });
+
+  function animateForm(from,to,dur){
+    if(sizeTimer) clearInterval(sizeTimer);
+    var fn=document.getElementById('form-num'), startTs=null;
+    function frame(ts){
+      if(startTs===null) startTs=ts;
+      var k=Math.min(1,(ts-startTs)/dur);
+      var e=0.5-0.5*Math.cos(Math.PI*k); // плавный ease
+      var v=from+(to-from)*e;
+      fn.textContent=fmtMB(v); sizeVal.textContent=fmtMB(v);
+      if(k<1) requestAnimationFrame(frame); else { curSize=to; fn.textContent=fmtMB(to); sizeVal.textContent=fmtMB(to); }
+    }
+    requestAnimationFrame(frame);
+  }
+  function finishQuiz(){
+    show('s-form');
+    var title=document.getElementById('form-title'), fn=document.getElementById('form-num');
+    // фаза 1: только вращающийся кружок, без надписи и мегабайтов
+    title.style.transition='none'; fn.style.transition='none';
+    title.style.opacity='0'; fn.style.opacity='0';
+    sizeChip.classList.remove('on');
+    setProgVals(80,'Почти готово…');
+    setTimeout(function(){
+      // фаза 2: включаем надпись + счётчик МБ и запускаем набор
+      title.style.transition='opacity .45s ease'; fn.style.transition='opacity .45s ease';
+      title.style.opacity='1'; fn.style.opacity='1';
+      sizeChip.classList.add('on');
+      setProgVals(PROG['s-form'].p, PROG['s-form'].m);
+      var qtotal=sizeUpTo(QUIZ.length); curSize=qtotal;
+      fn.textContent=fmtMB(qtotal); sizeVal.textContent=fmtMB(qtotal);
+      animateForm(qtotal, qtotal+BULK, 2000);
+    }, 900);
+    setTimeout(function(){
+      document.getElementById('ready-size').textContent=fmtMB(finalSize());
+      show('s-ready');
+    }, 3100);
+  }
+
+  /* выбор способа → форма */
+  document.querySelectorAll('[data-msgr]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      chosen=btn.dataset.msgr;
+      var caps={ 'MAX':'Введите ваш номер мессенджера MAX', 'Telegram':'Введите ваш номер мессенджера Telegram', 'Телефон':'Введите ваш номер телефона' };
+      document.getElementById('phone-title').textContent=caps[chosen]||caps['Телефон'];
+      document.getElementById('connect-title').textContent='Отправка в '+(chosen==='MAX'?'MAX':'Telegram')+'…';
+      show('s-connect');
+      setTimeout(function(){ show('s-phone'); setTimeout(function(){ inp.focus(); }, 250); }, 1000);
+    });
+  });
+  document.querySelectorAll('[data-back]').forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.back); }); });
+
+  /* телефон */
+  var inp=document.querySelector('input[name=phone]');
+  function pdigits(v){ var raw=String(v||'').replace(/\D/g,''); if(raw[0]==='8'||raw[0]==='7') raw=raw.slice(1); return raw.slice(0,10); }
+  function validPhone(v){ return pdigits(v).length===10; }
+  inp.setAttribute('inputmode','tel');
+  inp.addEventListener('input', function(){
+    inp.classList.remove('err');
+    if(!inp.value.replace(/\D/g,'').length){ inp.value=''; return; }
+    var raw=pdigits(inp.value);
+    var out='+7 ('+raw.slice(0,3);
+    if(raw.length>3) out+=') '+raw.slice(3,6);
+    if(raw.length>6) out+='-'+raw.slice(6,8);
+    if(raw.length>8) out+='-'+raw.slice(8,10);
+    inp.value=out;
+  });
+  inp.addEventListener('blur', function(){ if(inp.value && !validPhone(inp.value)) inp.classList.add('err'); });
+
+  /* отправка */
+  function reachGoal(){ try{ if(CONFIG.metrikaId && window.ym){ window.ym(CONFIG.metrikaId,'reachGoal',CONFIG.metrikaGoal); } }catch(e){} }
+  function deliver(p){
+    try{ fetch(CONFIG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p),keepalive:true}).catch(function(){}); }catch(e){}
+  }
+
+  document.getElementById('lead-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!validPhone(inp.value)){ inp.classList.add('err'); inp.focus(); return; }
+    inp.classList.remove('err');
+    var det=answers.map(function(a){ return a?(a.label+': '+a.t):''; }).filter(Boolean).join('; ');
+    var doneTxt={ 'MAX':'в мессенджер MAX', 'Telegram':'в Telegram', 'Телефон':'на телефон' };
+    reachGoal();
+    try{ if(window.ym){ window.ym(97508515,'reachGoal','quiz_lead_arsk'); } }catch(e){}
+    deliver({source:LEAD_SOURCE, city:'Арск', phone:inp.value, details:'Способ: '+chosen+'; Каталог: '+fmtMB(finalSize())+'; '+det});
+    document.getElementById('done-dest').textContent=doneTxt[chosen]||doneTxt['Телефон'];
+    show('s-done');
+  });
+})();
+</script>
+</body>
+</html>
