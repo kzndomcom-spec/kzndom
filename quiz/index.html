@@ -258,6 +258,11 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
 (function(){
   var CONFIG={ whatsapp:'79662505650', webhook:'https://kzndom-lead.kzndomcom.workers.dev', metrikaId:97508515, metrikaGoal:'lead' };
   var LEAD_SOURCE='Каталог (Яндекс Директ)';
+  function qsp(n){ try{ return new URLSearchParams(location.search).get(n)||''; }catch(e){ return ''; } }
+  var UTM={ campaign:qsp('utm_campaign'), source:qsp('utm_source'), medium:qsp('utm_medium'), term:qsp('utm_term'), content:qsp('utm_content') };
+  var CITY_SLUG=(qsp('city')||UTM.campaign||'').toLowerCase();
+  var CITY_MAP={ kzn:'Казань', kazan:'Казань', nk:'Нижнекамск', chelny:'Набережные Челны', 'naberezhnye-chelny':'Набережные Челны', cheb:'Чебоксары', yola:'Йошкар-Ола', chistopol:'Чистополь', arsk:'Арск' };
+  var CITY=CITY_MAP[CITY_SLUG]||'';
   var BASE=1.8, chosen='Telegram';
 
   var QUIZ=[
@@ -466,7 +471,7 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
   inp.addEventListener('blur', function(){ if(inp.value && !validPhone(inp.value)) inp.classList.add('err'); });
 
   /* отправка */
-  function reachGoal(){ try{ if(CONFIG.metrikaId && window.ym){ window.ym(CONFIG.metrikaId,'reachGoal',CONFIG.metrikaGoal); } }catch(e){} }
+  function reachGoal(){ try{ if(CONFIG.metrikaId && window.ym){ window.ym(CONFIG.metrikaId,'reachGoal',CONFIG.metrikaGoal); if(CITY_SLUG){ window.ym(CONFIG.metrikaId,'reachGoal','lead_'+CITY_SLUG); } } }catch(e){} }
   function deliver(p){
     try{ fetch(CONFIG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p),keepalive:true}).catch(function(){}); }catch(e){}
   }
@@ -478,8 +483,8 @@ html,body{margin:0;padding:0;background:#0A0A0A;}
     var det=answers.map(function(a){ return a?(a.label+': '+a.t):''; }).filter(Boolean).join('; ');
     var doneTxt={ 'MAX':'в мессенджер MAX', 'Telegram':'в Telegram', 'Телефон':'на телефон' };
     reachGoal();
-    try{ if(window.ym){ window.ym(97508515,'reachGoal','quiz_lead'); } }catch(e){}
-    deliver({source:LEAD_SOURCE, city:'Челны', phone:inp.value, details:'Способ: '+chosen+'; Каталог: '+fmtMB(finalSize())+'; '+det});
+    try{ if(window.ym){ window.ym(97508515,'reachGoal','quiz_lead'); if(CITY_SLUG){ window.ym(97508515,'reachGoal','quiz_lead_'+CITY_SLUG); } } }catch(e){}
+    deliver({source:LEAD_SOURCE, city:CITY, phone:inp.value, utm:UTM, details:'Способ: '+chosen+'; Каталог: '+fmtMB(finalSize())+'; '+det});
     document.getElementById('done-dest').textContent=doneTxt[chosen]||doneTxt['Телефон'];
     show('s-done');
   });
