@@ -110,26 +110,23 @@
 .kzn .btn:active{ transform:scale(.99); }
 .kzn .hint{ margin-top:13px; color:var(--t3); font-size:.8rem; }
 
-/* brand logo lockup */
-.kzn .brand{ display:inline-flex; align-items:center; gap:11px; margin-bottom:34px; }
-.kzn .brand-mark{ width:34px; height:34px; flex-shrink:0; }
-.kzn .brand-tx{ text-align:left; line-height:1; }
-.kzn .brand-tx .bn{ display:block; font-family:'Unbounded',sans-serif; font-weight:800; font-size:1.18rem; letter-spacing:.02em; color:#fff; }
-.kzn .brand-tx .bs{ display:block; font-size:.56rem; font-weight:600; letter-spacing:.22em; color:var(--t2); margin-top:5px; text-transform:uppercase; }
+/* brand logo lockup (white wordmark — swap with real logo file when provided) */
+.kzn .brand{ display:inline-flex; flex-direction:column; align-items:center; gap:7px; margin-bottom:30px; }
+.kzn .brand .bn{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:1.7rem; letter-spacing:.01em; color:#fff; line-height:1; }
+.kzn .brand .bs{ font-size:.6rem; font-weight:600; letter-spacing:.34em; color:var(--t2); text-transform:uppercase; }
+/* when a real logo image is dropped in: <img class="brand-img" src="/img/logo.svg"> */
+.kzn .brand-img{ height:38px; width:auto; filter:brightness(0) invert(1); }
 </style>
 
 <div class="glow"></div>
 <div class="wrap">
 
   <div class="brand">
-    <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <path d="M20 4 L36 34 H26 L20 21 L14 34 H4 Z" fill="#ffffff"/>
-    </svg>
-    <span class="brand-tx"><span class="bn">ДОМКОМ</span><span class="bs">строительная компания</span></span>
+    <span class="bn">ДОМКОМ</span>
+    <span class="bs">строительная компания</span>
   </div>
 
-  <span class="eyebrow">НАШ КАНАЛ В MAX</span>
-  <h1>Все проекты <span class="acc">«Домком»</span> и полезное о своих домах — в нашем канале MAX</h1>
+  <h1>Все проекты и полезная информация о своих домах — <span class="acc">теперь в нашем канале MAX</span></h1>
 
   <!-- clickable channel preview -->
   <a class="phone js-ch" href="#" target="_blank" rel="noopener" aria-label="Открыть канал ДомКом в MAX">
