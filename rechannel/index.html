@@ -110,20 +110,17 @@
 .kzn .btn:active{ transform:scale(.99); }
 .kzn .hint{ margin-top:13px; color:var(--t3); font-size:.8rem; }
 
-/* brand logo lockup (white wordmark — swap with real logo file when provided) */
-.kzn .brand{ display:inline-flex; flex-direction:column; align-items:center; gap:7px; margin-bottom:30px; }
-.kzn .brand .bn{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:1.7rem; letter-spacing:.01em; color:#fff; line-height:1; }
-.kzn .brand .bs{ font-size:.6rem; font-weight:600; letter-spacing:.34em; color:var(--t2); text-transform:uppercase; }
-/* when a real logo image is dropped in: <img class="brand-img" src="/img/logo.svg"> */
-.kzn .brand-img{ height:38px; width:auto; filter:brightness(0) invert(1); }
+/* brand logo (white PNG, transparent bg) */
+.kzn .brand{ display:flex; justify-content:center; margin-bottom:30px; }
+.kzn .brand-img{ height:46px; width:auto; }
+@media(max-width:400px){ .kzn .brand-img{ height:40px; } }
 </style>
 
 <div class="glow"></div>
 <div class="wrap">
 
   <div class="brand">
-    <span class="bn">ДОМКОМ</span>
-    <span class="bs">строительная компания</span>
+    <img class="brand-img" src="/img/logo-white.png" alt="Домком — строительная компания">
   </div>
 
   <h1>Все проекты и полезная информация о своих домах — <span class="acc">теперь в нашем канале MAX</span></h1>
